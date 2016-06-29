@@ -1,0 +1,7863 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-api" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/29/api/" class="article-date">
+  <time datetime="2016-06-29T02:54:04.000Z" itemprop="datePublished">2016-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/29/api/">api</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="dx/">返回首页</a></p>
+<h1 id="大象理财APP开发接口"><a href="#大象理财APP开发接口" class="headerlink" title="大象理财APP开发接口"></a>大象理财APP开发接口</h1><p>[TOC]</p>
+<h2 id="版本变更记录"><a href="#版本变更记录" class="headerlink" title="版本变更记录"></a>版本变更记录</h2><table>
+<thead>
+<tr>
+<th>版本号</th>
+<th>变更人</th>
+<th>变更时间</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V2.4</td>
+<td>黄一炜</td>
+<td>2014-9-23</td>
+<td>初始创建</td>
+</tr>
+<tr>
+<td>V2.6</td>
+<td>黄一炜</td>
+<td>2015-4-20</td>
+<td>启用业务流水号字段</td>
+</tr>
+<tr>
+<td>V2.6</td>
+<td>黄一炜</td>
+<td>2015-5-4</td>
+<td>根据活动修改相关接口</td>
+</tr>
+<tr>
+<td>V2.8</td>
+<td>孟繁峰</td>
+<td>2015-11-13</td>
+<td>手机公告接口</td>
+</tr>
+</tbody>
+</table>
+<h2 id="1-引言"><a href="#1-引言" class="headerlink" title="1.    引言"></a>1.    引言</h2><h2 id="2-分析设计"><a href="#2-分析设计" class="headerlink" title="2.    分析设计"></a>2.    分析设计</h2><h2 id="3-HTTP服务接口"><a href="#3-HTTP服务接口" class="headerlink" title="3.    HTTP服务接口"></a>3.    HTTP服务接口</h2><h3 id="3-1-接口综述"><a href="#3-1-接口综述" class="headerlink" title="3.1    接口综述"></a>3.1    接口综述</h3><h4 id="1-HTTP接口概述"><a href="#1-HTTP接口概述" class="headerlink" title="1) HTTP接口概述"></a>1) HTTP接口概述</h4><pre><code>HTTP是Hyper Text Transfer Protocol（超文本传输协议）的缩写。它的发展是万维网协会（World Wide Web Consortium）和Internet工作小组IETF（Internet Engineering Task Force）合作的结果，（他们）最终发布了一系列的RFC，RFC 1945定义了HTTP/1.0版本。其中最著名的就是RFC 2616。RFC 2616定义了今天普遍使用的一个版本——HTTP 1.1。为纪念Tim Berners-Lee提出HTTP后对互联网发展的贡献，万维网协会保留有他最原始提交的版本。
+HTTP协议（HyperText Transfer Protocol，超文本传输协议）是用于从WWW服务器传输超文本到本地浏览器的传送协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示(如文本先于图形)等。
+HTTP是一个应用层协议，由请求和响应构成，是一个标准的客户端服务器模型。HTTP是一个无状态的协议。
+</code></pre><h4 id="2-安全机制"><a href="#2-安全机制" class="headerlink" title="2)    安全机制"></a>2)    安全机制</h4><pre><code>所有请求需要对内容进行AES加密，参数名称保持明文。
+所有响应JSON内容整体经过AES进行加密，不直接响应明文。
+</code></pre><h4 id="3-认证机制"><a href="#3-认证机制" class="headerlink" title="3)    认证机制"></a>3)    认证机制</h4><pre><code>在所有指令传输过程中，必须带上令牌标示。如果没有令牌，则用空字符串代替。
+服务器接收到需要授权认证的指令后，对令牌做有效性判断。令牌是否有效判断包括令牌是否为真实令牌和令牌有效期是否超时，如果令牌为真实令牌且令牌未超时，则为认证通过。
+其他不需要授权认证的指令，不对令牌有效性进行校验。
+</code></pre><h4 id="4-数据规约"><a href="#4-数据规约" class="headerlink" title="4)    数据规约"></a>4)    数据规约</h4><pre><code>所有请求使用POST方式。
+所有响应数据使用JSON字符串进行传输。如果字段为空，则用空字符串代替。如果节点内容为空，默认情况下不包含该类节点，除非特别说明。
+例如内容为空的body标签，响应的内容中就会有一个不包含内容的body空标签。
+具体接口数据格式详见各功能接口部分。
+</code></pre><h4 id="5-业务流水号"><a href="#5-业务流水号" class="headerlink" title="5)    业务流水号"></a>5)    业务流水号</h4><pre><code>业务流水号“{seqId}”为每次请求的唯一标识，如果请求的业务流水号没有发生变化，则认为是重复请求。
+业务流水号格式为渠道标识代码加下横线加32位无符号随机字符串。
+假设接口列表中定义的接口URL为：http://ServiceAddress/user/register/{seqId}  那么实际请求的URL即为：http://ServiceAddress/user/register/99999_93C77D9B07E04A7BB4C315522B86B54B    业务流水号为必须存在字段，当该请求不是客户端所在渠道发出时，也需要传递渠道号，起到Url占位作用。具体渠道号请参考4.2渠道号部分。
+</code></pre><h3 id="3-2-公共参数"><a href="#3-2-公共参数" class="headerlink" title="3.2    公共参数"></a>3.2    公共参数</h3><h3 id="3-3-接口列表"><a href="#3-3-接口列表" class="headerlink" title="3.3    接口列表"></a>3.3    接口列表</h3><h4 id="1-注册接口"><a href="#1-注册接口" class="headerlink" title="1)    注册接口"></a>1)    注册接口</h4><h5 id="方法名称"><a href="#方法名称" class="headerlink" title="方法名称"></a>方法名称</h5><p>register</p>
+<h5 id="方法描述"><a href="#方法描述" class="headerlink" title="方法描述"></a>方法描述</h5><p>注册。</p>
+<h5 id="访问路径"><a href="#访问路径" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/register/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/register/{seqId}</a></p>
+<h5 id="输入参数"><a href="#输入参数" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>userName</td>
+<td>登录账号</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>密码</td>
+<td>varchar(64)</td>
+<td>未经过MD5加密</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数"><a href="#输出参数" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例"><a href="#响应报文示例" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":27000,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+
+<h4 id="2-登录接口"><a href="#2-登录接口" class="headerlink" title="2)    登录接口"></a>2)    登录接口</h4><h5 id="方法名称-1"><a href="#方法名称-1" class="headerlink" title="方法名称"></a>方法名称</h5><p>login</p>
+<h5 id="方法描述-1"><a href="#方法描述-1" class="headerlink" title="方法描述"></a>方法描述</h5><p>进行用户登录，并且获取令牌。</p>
+<h5 id="访问路径-1"><a href="#访问路径-1" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/login/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/login/{seqId}</a></p>
+<h5 id="输入参数-1"><a href="#输入参数-1" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>confimPassword</td>
+<td>密码确认</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>password</td>
+<td>密码</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机号</td>
+<td>varchar(11)</td>
+<td></td>
+</tr>
+<tr>
+<td>phoneCode</td>
+<td>手机验证码</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>nikeName</td>
+<td>昵称</td>
+<td>varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>recommend</td>
+<td>推荐人</td>
+<td>varchar(50)</td>
+<td>推荐人的手机号或邮箱；若为空，则没有推荐人</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-1"><a href="#输出参数-1" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td>随机字符串</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-1"><a href="#响应报文示例-1" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":27000,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<h4 id="3-注销接口"><a href="#3-注销接口" class="headerlink" title="3) 注销接口"></a>3) 注销接口</h4><h5 id="方法名称-2"><a href="#方法名称-2" class="headerlink" title="方法名称"></a>方法名称</h5><p>loginout</p>
+<h5 id="方法描述-2"><a href="#方法描述-2" class="headerlink" title="方法描述"></a>方法描述</h5><p>进行用户登录，并且获取令牌。</p>
+<h5 id="访问路径-2"><a href="#访问路径-2" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/loginout/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/loginout/{seqId}</a></p>
+<h5 id="输入参数-2"><a href="#输入参数-2" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-2"><a href="#输出参数-2" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-2"><a href="#响应报文示例-2" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":,
+        "retMsg":""
+    },
+    "body": null
+}
+</pre>
+
+<hr>
+<h4 id="4-个人信息（3-0-1新增参数）"><a href="#4-个人信息（3-0-1新增参数）" class="headerlink" title="4)    个人信息（3.0.1新增参数）"></a>4)    个人信息（3.0.1新增参数）</h4><h5 id="方法名称-3"><a href="#方法名称-3" class="headerlink" title="方法名称"></a>方法名称</h5><p>userInfo</p>
+<h5 id="方法描述-3"><a href="#方法描述-3" class="headerlink" title="方法描述"></a>方法描述</h5><p> 获取用户基本信息和用户余额。 </p>
+<h5 id="访问路径-3"><a href="#访问路径-3" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/userInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/userInfo/{seqId}</a></p>
+<h5 id="输入参数-3"><a href="#输入参数-3" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-3"><a href="#输出参数-3" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mail</td>
+<td>邮箱</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机号</td>
+<td>varchar(11)</td>
+<td></td>
+</tr>
+<tr>
+<td>isFounder</td>
+<td>是否发起人</td>
+<td>Integer</td>
+<td>是否发起人 1是 0否</td>
+</tr>
+<tr>
+<td>isManager</td>
+<td>是否资金管理人</td>
+<td>Integer</td>
+<td>是否基金经理 1是 0否</td>
+</tr>
+<tr>
+<td>mailIsEnable</td>
+<td>邮箱是否激活</td>
+<td>Integer</td>
+<td>1激活 0 未激活</td>
+</tr>
+<tr>
+<td>phoneIsBind</td>
+<td>手机是否绑定</td>
+<td>Integer</td>
+<td>1 绑定 0未绑定</td>
+</tr>
+<tr>
+<td>identityType</td>
+<td>证件类型</td>
+<td>Integer</td>
+<td>1 身份证 2 护照</td>
+</tr>
+<tr>
+<td>identityAuth</td>
+<td>身份认证</td>
+<td>Integer</td>
+<td>1认证 0未认证 2审核中</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td>昵称</td>
+<td>varchar(20)</td>
+</tr>
+<tr>
+<td>sex</td>
+<td>性别</td>
+<td>Integer</td>
+<td>性别 1男 0女 2保密</td>
+</tr>
+<tr>
+<td>headPortraitsImage</td>
+<td>头像文件名</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>hasTradePwd</td>
+<td>是否有交易密码</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>balanceCny</td>
+<td>人民币余额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>freezeAmount</td>
+<td>冻结金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>profitLossAmountTotal</td>
+<td>累计收益</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>freezeEquity</td>
+<td>被冻结金额的当前净值</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>userGradeInfoList</td>
+<td>用户等级列表开始</td>
+</tr>
+<tr>
+<td>userGradeInfoList.roleType</td>
+<td>角色类型</td>
+<td>Integer</td>
+<td>0：合伙人;  <br>  1：发起人  <br>2：基金经理</td>
+</tr>
+<tr>
+<td>userGradeInfoList.grade</td>
+<td>用户等级</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>userGradeInfoList.amount</td>
+<td>段位金额</td>
+<td>Long</td>
+<td></td>
+</tr>
+<tr>
+<td>userGradeInfoList</td>
+<td>用户等级列表结束</td>
+</tr>
+<tr>
+<td>realName</td>
+<td>真实姓名</td>
+<td>varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>identityCardNum</td>
+<td>身份证号码</td>
+<td>varchar(30)</td>
+<td></td>
+</tr>
+<tr>
+<td>accumulatedEarnings</td>
+<td>累计收益</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>investmentAmount</td>
+<td>投资金额</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>joinProductsAmount</td>
+<td>入伙产品金额</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>followAmount</td>
+<td>跟投投资金额</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>createProductsAmount</td>
+<td>发起合伙金额</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>managerProductsAmount</td>
+<td>资金管理金额</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>redAmount</td>
+<td>我的红包金额</td>
+<td>long</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-3"><a href="#响应报文示例-3" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{ 
+    "header": { 
+        "retCode": 11000, 
+        "retMsg": "个人信息查询成功"
+    }, 
+    "body": { 
+        "mail": "gpqhl0.com1", 
+        "phone": "15600000002", 
+        "isFounder": 1, 
+        "isManager": 1, 
+        "mailIsEnable": 1, 
+        "phoneIsBind": 1, 
+        "identityType": 1, 
+        "identityAuth": 1, 
+        "nickname": "黑天使", 
+        "sex": 0, 
+        "headPortraitsImage": "boy04.png", 
+        "hasTradePwd": true, 
+        "balanceCny": 98197885, 
+        "freezeAmount": 99025, 
+        "profitLossAmountTotal": 283006318, 
+        "freezeEquity": 100000, 
+        "realName": "小李", 
+        "identityCardNum": "230302198811241234", 
+        "userGradeInfoList": [ 
+            { 
+                "roleType": 0, 
+                "grade": 1, 
+                "amount": 0
+            }, 
+            { 
+                "roleType": 1, 
+                "grade": 1, 
+                "amount": 10000000
+            }, 
+            { 
+                "roleType": 2, 
+                "grade": 6, 
+                "amount": 566452636
+            }
+        ], 
+        "accumulatedEarnings": 283005318.82, 
+        "investmentAmount": 110525, 
+        "joinProductsAmount": 0, 
+        "followAmount": 10000, 
+        "createProductsAmount": 50262, 
+        "managerProductsAmount": 50263, 
+        "redAmount": 0
+    }
+}
+</pre>
+
+<hr>
+<h4 id="5-个人资产"><a href="#5-个人资产" class="headerlink" title="5) 个人资产"></a>5) 个人资产</h4><h5 id="方法名称-4"><a href="#方法名称-4" class="headerlink" title="方法名称"></a>方法名称</h5><p>userProperty</p>
+<h5 id="方法描述-4"><a href="#方法描述-4" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取用户资产信息，包括用户余额和红包</p>
+<h5 id="访问路径-4"><a href="#访问路径-4" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/userProperty/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/userProperty/{seqId}</a></p>
+<h5 id="输入参数-4"><a href="#输入参数-4" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-4"><a href="#输出参数-4" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>balanceCny</td>
+<td>人民币余额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>freezeAmount</td>
+<td>冻结金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>profitLossAmountTotal</td>
+<td>累计收益</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>freezeEquity</td>
+<td>用户净值</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>euqity</td>
+<td>净值包含跟投和入伙产生的净值</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>investment</td>
+<td>账户当前投资金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td><b><font color="red">redbagList</font></b></td>
+<td>可用红包列表</td>
+<td>List</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.regbagId</td>
+<td>红包ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.source</td>
+<td>红包来源</td>
+<td>Varchar(100)</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.amount</td>
+<td>面额</td>
+<td>Long</td>
+<td>以整数记录小数并从小数点后两位开始，类型为1和2时代表金额，类型为3时代表补贴比例</td>
+</tr>
+<tr>
+<td><b>redbagList</b>.beginTime</td>
+<td>获取时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.lastTime</td>
+<td>过期时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.useTime</td>
+<td>使用时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td><b>redbagList</b>.type</td>
+<td>类型</td>
+<td>Integer</td>
+<td>1、红包2、限量红包3、财神符</td>
+</tr>
+<tr>
+<td><b>redbagList</b>.<b><font color="red">scope</font></b></td>
+<td>使用范围</td>
+<td>Object</td>
+<td>使用范围限制，可以限制特定发起人，资金管理人等才能使用该红包。为空则不做任何限制，如果某一个限制条件为空则该条件不做限制。多个限制条件为并且关系。</td>
+</tr>
+<tr>
+<td><b>redbagList</b>.redbagPoolAllowance</td>
+<td>红包池余量</td>
+<td>Long</td>
+<td>限量红包类型：可用红包总个数；财神符类型：资金池可用金额；为空则为无最大额度限制</td>
+</tr>
+<tr>
+<td>redbagList.<b>scope</b>.maxRisk</td>
+<td>最大风险</td>
+<td>Long</td>
+<td>允许入伙最大的合伙人风险产品</td>
+</tr>
+<tr>
+<td>redbagList.<b>scope</b>.maxOperationDate</td>
+<td>最大操作小时数</td>
+<td>Long</td>
+<td>允许入伙最大操作期产品</td>
+</tr>
+<tr>
+<td>redbagList.<b>scope</b>.fundIds</td>
+<td>产品ID集合</td>
+<td>Varchar(256)</td>
+<td>使用ID逗号相隔拼接字符串，如：xxxx,xxxx,xxxx</td>
+</tr>
+<tr>
+<td>redbagList.<b>scope</b>.funderIds</td>
+<td>发起人ID集合</td>
+<td>Varchar(256)</td>
+<td>使用ID逗号相隔拼接字符串，如：xxxx,xxxx,xxxx</td>
+</tr>
+<tr>
+<td>redbagList.<b>scope</b>.managerIds</td>
+<td>管理人ID集合</td>
+<td>Varchar(256)</td>
+<td>使用ID逗号相隔拼接字符串，如：xxxx,xxxx,xxxx</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-4"><a href="#响应报文示例-4" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":12000,
+        "retMsg":"个人资产查询成功"
+    },
+    "body":{
+        "balanceCny":146758001,
+        "freezeAmount":36755300,
+        "profitLossAmountTotal":-6131744,
+        "freezeEquity":34170541,
+        "redbagList":[
+            {
+                " regbagId ":152,
+                "source":"测试",
+                "amount":1000,
+                "beginTime":"2014-10-30 08:47:09",
+                "lastTime":"2014-11-28 15:59:59",
+                "useTime":null
+            },
+            {
+                " regbagId ":153,
+                "source":"测试",
+                "amount":2000,
+                "beginTime":"2014-10-30 08:47:25",
+                "lastTime":"2015-10-08 15:59:59",
+                "useTime":null
+            },
+            {
+                " regbagId ":154,
+                "source":"测试",
+                "amount":3000,
+                "beginTime":"2014-10-30 08:47:37",
+                "lastTime":"2014-12-12 15:59:59",
+                "useTime":null
+            },
+            {
+                " regbagId ":155,
+                "source":"测试",
+                "amount":4000,
+                "beginTime":"2014-10-30 08:47:49",
+                "lastTime":"2014-12-24 15:59:59",
+                "useTime":null
+            },
+            {
+                " regbagId ":156,
+                "source":"测试",
+                "amount":5000,
+                "beginTime":"2014-10-30 08:48:02",
+                "lastTime":"2015-01-02 15:59:59",
+                "useTime":null
+            },
+            {
+                " regbagId ":157,
+                "source":"测试",
+                "amount":6000,
+                "beginTime":"2014-10-30 08:48:13",
+                "lastTime":"2015-01-09 15:59:59",
+                "useTime":null
+            }
+        ]
+    }
+}
+</pre>
+
+<hr>
+<h4 id="6-获取推荐产品"><a href="#6-获取推荐产品" class="headerlink" title="6) 获取推荐产品"></a>6) 获取推荐产品</h4><h5 id="方法名称-5"><a href="#方法名称-5" class="headerlink" title="方法名称"></a>方法名称</h5><p>getFundByRisk</p>
+<h5 id="方法描述-5"><a href="#方法描述-5" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取推荐产品。</p>
+<h5 id="访问路径-5"><a href="#访问路径-5" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/getFundByRisk/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/getFundByRisk/{seqId}</a></p>
+<h5 id="输入参数-5"><a href="#输入参数-5" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundRiskKey</td>
+<td>风险推荐类型</td>
+<td>Varchar(64)</td>
+<td>保本稳健型：fund_no_risk低风险产品：fund_low_risk高风险型产品：fund_high_risk</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-5"><a href="#输出参数-5" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundName</td>
+<td>产品名称</td>
+<td>Varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>productType</td>
+<td>产品类型</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>funderId</td>
+<td>发起人ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundManagerId</td>
+<td>资金管理人ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundManagerName</td>
+<td>资金管理人名称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>expectYield</td>
+<td>预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectYearYield</td>
+<td>预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundMaxRisk</td>
+<td>产品最大风险</td>
+<td>double</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>partnerRisk</td>
+<td>合伙人风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>targetRaiseAmount</td>
+<td>目标募集金额</td>
+<td>Long</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>currRaiseAmount</td>
+<td>当前募集总额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectPartnerYield</td>
+<td>合伙人预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectPartnerYearYield</td>
+<td>合伙人预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectPartnerRegularYield</td>
+<td>合伙人预期固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>partnerRegularYearYield</td>
+<td>合伙人固定年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualPartnerRegularYield</td>
+<td>合伙人实际固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>allowJoinUserIds</td>
+<td>允许入伙用户ID</td>
+<td>Varchar(512)</td>
+<td>用户ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333</td>
+</tr>
+<tr>
+<td>minAmount</td>
+<td>最小入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>maxAmount</td>
+<td>最大入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>redBagOnly</td>
+<td>是否只允许红包入伙</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>status</td>
+<td>基金状态</td>
+<td>Integer</td>
+<td>1发起未确认 2募集中 3操作中 4已清盘 5发起失败</td>
+</tr>
+<tr>
+<td>planOperHours</td>
+<td>预计操作小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>investScope</td>
+<td>投资范围</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>rate</td>
+<td>大象币使用费率</td>
+<td>int</td>
+<td>如12.34%，则返回1234，除以10000为0.1234</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>大象币杠杆率</td>
+<td>int</td>
+<td>若返回400，则400/100.0=实际倍率4.0</td>
+</tr>
+<tr>
+<td>exFundInfo</td>
+<td>产品大象币信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>isLoanFund</td>
+<td>是否使用大象币</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>srcFix</td>
+<td>未用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>dxbFix</td>
+<td>使用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>srcFlt</td>
+<td>未用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>dxbFlt</td>
+<td>使用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>exFollowInfo</td>
+<td>推荐策信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.id</td>
+<td>策略Id</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.name</td>
+<td>策略名称</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.profitRate</td>
+<td>当前收益率</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.maxDraw</td>
+<td>最大回撤</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.totalAmount</td>
+<td>跟投总额</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.followPersons</td>
+<td>当前跟投人数</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.providerRate</td>
+<td>策略提供者提成比例</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.platformRate</td>
+<td>平台提成比例</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.followStatus</td>
+<td>是否允许跟投：0,不可跟 1,可以跟投</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.maxFollowCount</td>
+<td>允许最大跟投人数</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>exFollowInfo.days</td>
+<td>公开周期</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList</td>
+<td>策略净值列表</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList.createTime</td>
+<td>更新净值日期</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList.unitEquity</td>
+<td>当日单位净值（USD）</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList.totalFollowMoney</td>
+<td>当日跟投资金总量（CHN）</td>
+<td>double</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-5"><a href="#响应报文示例-5" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":13000,
+        "retMsg":"查询推荐产品成功"
+    },
+    "body":{
+        "fundId":122510,
+        "fundName":"入伙赠金081302",
+        "fundManagerId":166689,
+        "fundManagerName":"duptest01",
+        "expectYield":2000,
+        "expectYearYield":1076648,
+        "fundMaxRisk":300,
+        "partnerRisk":100,
+        "targetRaiseAmount":10000000,
+        "currRaiseAmount":221200,
+        "expectPartnerYield":50000,
+        "expectPartnerYearYield":2147483647,
+        "planOperHours":335
+    }
+}
+</pre>
+
+<h4 id="7-募集中产品列表"><a href="#7-募集中产品列表" class="headerlink" title="7)募集中产品列表"></a>7)募集中产品列表</h4><h5 id="方法名称-6"><a href="#方法名称-6" class="headerlink" title="方法名称"></a>方法名称</h5><p>getRaiseFundList</p>
+<h5 id="方法描述-6"><a href="#方法描述-6" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取产品列表。</p>
+<h5 id="访问路径-6"><a href="#访问路径-6" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/getRaiseFundList/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/getRaiseFundList/{seqId}</a></p>
+<h5 id="输入参数-6"><a href="#输入参数-6" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sortName</td>
+<td>要排序的字段</td>
+<td>Integer</td>
+<td>预期年化：110最大风险：120募集金额：130 募集进度：140 剩余募集时间：150</td>
+</tr>
+<tr>
+<td>sortDesc</td>
+<td>排序类型</td>
+<td>Varchar(10)</td>
+<td>AES：0 DESC：1</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>数据起始页</td>
+<td>Integer</td>
+<td>起始页从0开始</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页数据大小</td>
+<td>Integer</td>
+<td>每页包含数据条数</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-6"><a href="#输出参数-6" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalRaiseFund</td>
+<td>总条数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>recommendIds</td>
+<td>推荐产品ID</td>
+<td>Varchar(512)</td>
+<td>产品ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333</td>
+</tr>
+<tr>
+<td>fundList</td>
+<td>产品列表</td>
+<td>List</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+</tr>
+<tr>
+<td>fundList.fundCode</td>
+<td>产品代码</td>
+<td>Varchar(12)</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.fundName</td>
+<td>产品名称</td>
+<td>Varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.productType</td>
+<td>产品类型</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.fundManagerId</td>
+<td>资金管理人ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.fundManagerName</td>
+<td>资金管理人名称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.expectYield</td>
+<td>预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.expectYearYield</td>
+<td>预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.fundMaxRisk</td>
+<td>产品最大风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.partnerRisk</td>
+<td>合伙人风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.targetRaiseAmount</td>
+<td>目标募集金额</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.currRaiseAmount</td>
+<td>当前募集总额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>fundList.expectPartnerYield</td>
+<td>合伙人预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.expectPartnerYearYield</td>
+<td>合伙人预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.expectPartnerRegularYield</td>
+<td>合伙人预期固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.partnerRegularYearYield</td>
+<td>合伙人固定年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.actualPartnerRegularYield</td>
+<td>合伙人实际固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundList.planOperHours</td>
+<td>预计操作小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.allowJoinUserIds</td>
+<td>允许入伙用户ID</td>
+<td>Varchar(512)</td>
+<td>用户ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333</td>
+</tr>
+<tr>
+<td>fundList.maxAmount</td>
+<td>最大入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>fundList.minAmount</td>
+<td>最小入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>fundList.redBagOnly</td>
+<td>是否只允许红包入伙</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.partnerCount</td>
+<td>合伙人数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.investScope</td>
+<td>投资范围</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.rate</td>
+<td>大象币使用费率</td>
+<td>int</td>
+<td>如12.34%，则返回1234，除以10000为0.1234</td>
+</tr>
+<tr>
+<td>fundList.multiple</td>
+<td>大象币杠杆率</td>
+<td>int</td>
+<td>若返回400，则400/100.0=实际倍率4.0</td>
+</tr>
+<tr>
+<td>fundList.exFundInfo</td>
+<td>产品大象币信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.exFundInfo.isLoanFund</td>
+<td>是否使用大象币</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>fundList.exFundInfo.srcFix</td>
+<td>未用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>fundList.exFundInfo.dxbFix</td>
+<td>使用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>fundList.exFundInfo.srcFlt</td>
+<td>未用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>fundList.exFundInfo.dxbFlt</td>
+<td>使用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-6"><a href="#响应报文示例-6" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":14000,
+        "retMsg":"查询募集中产品列表成功"
+    },
+    "body":{
+        totalRaiseFund：13
+        "fundList":[
+            {
+                "id":122592,
+                "fundCode":"12246105",
+                "fundName":"分配用户收益102102",
+                "fundManagerId":166689,
+                "fundManagerName":"duptest01",
+                "expectYield":4166,
+                "expectYearYield":100000,
+                "fundMaxRisk":5000,
+                "partnerRisk":2000,
+                "targetRaiseAmount":10000000,
+                "currRaiseAmount":3070000,
+                "expectPartnerYield":2975,
+                "expectPartnerYearYield":71400,
+                "planOperHours":341,
+                "partnerCount":5
+            },
+            {
+                "id":122608,
+                "fundCode":"12246121",
+                "fundName":"黄一炜test7",
+                "fundManagerId":166689,
+                "fundManagerName":"duptest01",
+                "expectYield":92500,
+                "expectYearYield":100000,
+                "fundMaxRisk":5000,
+                "partnerRisk":5000,
+                "targetRaiseAmount":10000000,
+                "currRaiseAmount":0,
+                "expectPartnerYield":74000,
+                "expectPartnerYearYield":80000,
+                "planOperHours":7992,
+                "partnerCount":0
+            }
+        ]
+    }
+}
+</pre>
+
+<h4 id="8-产品详情"><a href="#8-产品详情" class="headerlink" title="8)    产品详情"></a>8)    产品详情</h4><h5 id="方法名称-7"><a href="#方法名称-7" class="headerlink" title="方法名称"></a>方法名称</h5><p>getFundById</p>
+<h5 id="方法描述-7"><a href="#方法描述-7" class="headerlink" title="方法描述"></a>方法描述</h5><p>根据产品ID获取产品详情。</p>
+<h5 id="访问路径-7"><a href="#访问路径-7" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/getFundById/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/getFundById/{seqId}</a></p>
+<h5 id="输入参数-7"><a href="#输入参数-7" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-7"><a href="#输出参数-7" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>systemTime</td>
+<td>当前系统时间</td>
+<td>Long</td>
+<td></td>
+</tr>
+<tr>
+<td>funderId</td>
+<td>发起人ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>funderName</td>
+<td>发起人名称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>productType</td>
+<td>产品类型</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundCode</td>
+<td>产品代码</td>
+<td>Varchar(12)</td>
+<td></td>
+</tr>
+<tr>
+<td>fundName</td>
+<td>产品名称</td>
+<td>Varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>fundManagerId</td>
+<td>资金管理人ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundManagerName</td>
+<td>资金管理人名称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>investScope</td>
+<td>投资范围</td>
+<td>Varchar(40)</td>
+<td>投资范围 1外汇 2 股票 3期货 4贵金属 5债券。多个范围可同时存在。</td>
+</tr>
+<tr>
+<td>tradeDir</td>
+<td>交易方向</td>
+<td>Integer</td>
+<td>交易方向 1做空 2做多 3双向</td>
+</tr>
+<tr>
+<td>investStrategy</td>
+<td>投资策略</td>
+<td>Integer</td>
+<td>投资策略 1趋势跟踪 2背离交易 3价值投资 4超买超卖 5分散化交易 6量化交易 7基本面 8宏观投资 9高频交易</td>
+</tr>
+<tr>
+<td>expectYield</td>
+<td>预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectYearYield</td>
+<td>预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualYield</td>
+<td>实际收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualYearYield</td>
+<td>实际年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>fundMaxRisk</td>
+<td>产品最大风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>partnerRisk</td>
+<td>合伙人风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>targetRaiseAmount</td>
+<td>目标募集金额</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>currRaiseAmount</td>
+<td>当前募集总额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>currRaiseAmountRb</td>
+<td>当前募集额中红包总额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>raiseMin</td>
+<td>基金最小募集金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>funderRisk</td>
+<td>发起人承担风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>funderRiskAmount</td>
+<td>发起人承担风险金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>managerRisk</td>
+<td>基金经理承担风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>managerRiskAmount</td>
+<td>基金经理承担风险金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>adminerCommissionWay</td>
+<td>发起人和基金经理提成方式</td>
+<td>Integer</td>
+<td>发起人和基金经理提成方式 1固定提成 2阶梯分段固定 3阶梯分段累计</td>
+</tr>
+<tr>
+<td>adminerFixCommissionRate</td>
+<td>发起人和基金经理固定提成比例</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>funderCommissionRate</td>
+<td>发起人提成比例</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>managerCommissionRate</td>
+<td>基金经理提成比例</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>riskCommissionRate</td>
+<td>风险金提成比例</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectFunderYield</td>
+<td>发起人预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualFunderYield</td>
+<td>发起人实际收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectFunderYearYield</td>
+<td>预期发起人年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualFunderYearYield</td>
+<td>实际发起人年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectFunderCommission</td>
+<td>预期发起人风险金提成金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectManagerYield</td>
+<td>资金管理人预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualManagerYield</td>
+<td>资金管理人实际收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectManagerYearYield</td>
+<td>预期基金经理年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualManagerYearYield</td>
+<td>实际基金经理年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectManagerCommission</td>
+<td>预期基金经理风险金提成金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectPartnerYield</td>
+<td>合伙人预期收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualPartnerYield</td>
+<td>合伙人实际收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectPartnerYearYield</td>
+<td>合伙人预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualPartnerYearYield</td>
+<td>合伙人实际年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>expectPartnerRegularYield</td>
+<td>合伙人预期固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>partnerRegularYearYield</td>
+<td>合伙人固定年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>actualPartnerRegularYield</td>
+<td>合伙人实际固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>raiseHours</td>
+<td>募集期小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>planRaiseEndtime</td>
+<td>预期募集结束时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>achievedOperatable</td>
+<td>达到目标是否可提前进入操作期</td>
+<td>Integer</td>
+<td>1是 0否</td>
+</tr>
+<tr>
+<td>planOperStart</td>
+<td>计划操作期开始时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>actualOperStart</td>
+<td>实际操作期开始时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>planOperEnd</td>
+<td>计划操作期结束时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>actExpectOperEndTime</td>
+<td>实际计划操作结束时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>planOperHours</td>
+<td>预计操作小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>actualOperHours</td>
+<td>实际操作小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>fundDesc</td>
+<td>基金描述</td>
+<td>Varchar(1000)</td>
+<td></td>
+</tr>
+<tr>
+<td>achievedYieldCloseable</td>
+<td>达到收益是否可提前清盘</td>
+<td>Integer</td>
+<td>1是 0否</td>
+</tr>
+<tr>
+<td>status</td>
+<td>基金状态</td>
+<td>Integer</td>
+<td>1发起未确认 2募集中 3操作中 4已清盘 5发起失败</td>
+</tr>
+<tr>
+<td>closeReason</td>
+<td>基金关闭原因</td>
+<td>Integer</td>
+<td>1基金清盘:操作期间到期 2基金清盘:达到亏损条件 3基金清盘:达到收益目标 4基金经理拒绝 5发起人撤销 6募集失败</td>
+</tr>
+<tr>
+<td>fundCreateTime</td>
+<td>发起人创建基金时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>fundRaiseStartTime</td>
+<td>基金开始募集时间（也为基金经理确认时间）</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>fundRaiseEndTime</td>
+<td>基金募集结束时间(实际)</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>closeTime</td>
+<td>关闭时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>managerConfirmDeadline</td>
+<td>基金经理确认期限</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>curEquity</td>
+<td>当前净值</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>brokerId</td>
+<td>经纪商ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>brokerName</td>
+<td>经纪商名称</td>
+<td>Varchar(32)</td>
+<td></td>
+</tr>
+<tr>
+<td>partnerCount</td>
+<td>合伙人数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>allowJoinUserIds</td>
+<td>允许入伙用户ID</td>
+<td>Varchar(512)</td>
+<td>用户ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333</td>
+</tr>
+<tr>
+<td>minAmount</td>
+<td>最小入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>maxAmount</td>
+<td>最大入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>redBagOnly</td>
+<td>是否只允许红包入伙</td>
+<td>long</td>
+<td></td>
+</tr>
+<tr>
+<td>expectFunderYieldAmount</td>
+<td>发起人预期收益金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectManagerYieldAmount</td>
+<td>资金管理人预期收益金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectPartnerYieldAmount</td>
+<td>合伙人预期收益金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>expectPartnerRegularAmount</td>
+<td>合伙人预期固定收益金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>大象币使用费率</td>
+<td>int</td>
+<td>如12.34%，则返回1234，除以10000为0.1234</td>
+</tr>
+<tr>
+<td>multiple</td>
+<td>大象币杠杆率</td>
+<td>int</td>
+<td>若返回400，则400/100.0=实际倍率4.0</td>
+</tr>
+<tr>
+<td>commissionStageList</td>
+<td>分段返点集合</td>
+<td>List</td>
+<td>如果发起人和基金经理提成方式为固定提成，则此节点不存在。</td>
+</tr>
+<tr>
+<td>exFundInfo</td>
+<td>产品大象币信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>commissionStageList.commissionStageId</td>
+<td>分段提成ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>commissionStageList.start</td>
+<td>开始值（盈利）</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>commissionStageList.end</td>
+<td>结束值（盈利）</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>commissionStageList.point</td>
+<td>比例</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>commissionStageList.isTemplate</td>
+<td>是否是模板的</td>
+<td>Integer</td>
+<td>0:否 1:是</td>
+</tr>
+<tr>
+<td>exFundInfo.isLoanFund</td>
+<td>是否使用大象币</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>exFundInfo.srcFix</td>
+<td>未用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>exFundInfo.dxbFix</td>
+<td>使用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>exFundInfo.srcFlt</td>
+<td>未用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>exFundInfo.dxbFlt</td>
+<td>使用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-7"><a href="#响应报文示例-7" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+{
+    "header":{
+        "retCode":15000,
+        "retMsg":"查询产品详情成功"
+    },
+    "body":{
+        "fundId":122609,
+        "funderId":166689,
+        "funderName":"duptest01",
+        "fundCode":"12246122",
+        "fundName":"黄一炜test8",
+        "fundManagerId":166689,
+        "fundManagerName":"duptest01",
+        "investScope":"1,3",
+        "tradeDir":1,
+        "investStrategy":1,
+        "expectYield":670,
+        "expectYearYield":3500,
+        "actualYield":0,
+        "actualYearYield":0,
+        "fundMaxRisk":1500,
+        "partnerRisk":1200,
+        "targetRaiseAmount":20000000,
+        "currRaiseAmount":600000,
+        "currRaiseAmountRb":0,
+        "raiseMin":4000000,
+        "funderRisk":100,
+        "funderRiskAmount":200000,
+        "managerRisk":200,
+        "managerRiskAmount":400000,
+        "adminerCommissionWay":2,
+        "adminerFixCommissionRate":5000,
+        "funderCommissionRate":4000,
+        "managerCommissionRate":4000,
+        "riskCommissionRate":2000,
+        "expectFunderYield":1563,
+        "actualFunderYield":0,
+        "expectFunderYearYield":8154,
+        "actualFunderYearYield":0,
+        "expectFunderCommission":800000000,
+        "expectManagerYield":893,
+        "actualManagerYield":0,
+        "expectManagerYearYield":4659,
+        "actualManagerYearYield":0,
+        "expectManagerCommission":1600000000,
+        "expectPartnerYield":656,
+        "actualPartnerYield":0,
+        "expectPartnerYearYield":3422,
+        "actualPartnerYearYield":0,
+        "raiseHours":0,
+        "planRaiseEndtime":"2014-12-04 06:57:03",
+        "achievedOperatable":1,
+        "planOperStart":"2014-12-04 06:57:03",
+        "actualOperStart":null,
+        "planOperEnd":"2015-02-11 06:00:00",
+        "planOperHours":1656,
+        "actualOperHours":0,
+        "fundDesc":"",
+        "achievedYieldCloseable":1,
+        "status":2,
+        "closeReason":0,
+        "fundCreateTime":"2014-11-04 06:57:03",
+        "fundRaiseStartTime":"2014-11-04 06:57:03",
+        "fundRaiseEndTime":null,
+        "closeTime":null,
+        "managerConfirmDeadline":"2014-11-05 06:57:03",
+        "curEquity":0,
+        "brokerId":1,
+        "brokerName":"中福国际",
+        "partnerCount":2,
+        "allowJoinUserIds":null,
+        "minAmount":0,
+        "commissionStageInfoList":[
+            {
+                " commissionStageId ":0,
+                "start":0,
+                "end":1000,
+                "point":500,
+                "isTemplate":0
+            },
+            {
+                " commissionStageId ":0,
+                "start":1000,
+                "end":2000,
+                "point":1000,
+                "isTemplate":0
+            },
+            {
+                " commissionStageId ":0,
+                "start":2000,
+                "end":99999900,
+                "point":1500,
+                "isTemplate":0
+            }
+        ]
+    }
+}
+</pre>
+
+<h4 id="9-发起人档案"><a href="#9-发起人档案" class="headerlink" title="9)    发起人档案"></a>9)    发起人档案</h4><h5 id="方法名称-8"><a href="#方法名称-8" class="headerlink" title="方法名称"></a>方法名称</h5><p>funderInfo</p>
+<h5 id="方法描述-8"><a href="#方法描述-8" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取发起人档案信息。</p>
+<h5 id="访问路径-8"><a href="#访问路径-8" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/funderInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/funderInfo/{seqId}</a></p>
+<h5 id="输入参数-8"><a href="#输入参数-8" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-8"><a href="#输出参数-8" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mailIsEnable</td>
+<td>邮箱是否激活</td>
+<td>Integer</td>
+<td>1激活 0 未激活</td>
+</tr>
+<tr>
+<td>phoneIsBind</td>
+<td>手机是否绑定</td>
+<td>Integer</td>
+<td>1 绑定 0未绑定</td>
+</tr>
+<tr>
+<td>identityAuth</td>
+<td>身份认证</td>
+<td>Integer</td>
+<td>1认证 0未认证 2审核中</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td>昵称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>headPortraitsImage</td>
+<td>头像文件名</td>
+<td>Varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>avgActualYield</td>
+<td>平均年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>failedCnt</td>
+<td>发起失败产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>successCnt</td>
+<td>成功发起产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>totalCnt</td>
+<td>有效发起产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>hissuccessCnt</td>
+<td>发起的已清盘产品数量</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>successPersent</td>
+<td>产品发起成功率</td>
+<td>Long</td>
+<td>整数表示小数，以小数点后四位开始记录</td>
+</tr>
+<tr>
+<td>profitCnt</td>
+<td>盈利产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>totalProfit</td>
+<td>历史总收益</td>
+<td>Long</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>partnerProfit</td>
+<td>合伙人总收益</td>
+<td>Long</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>avgAmount</td>
+<td>历史平均发起产品规模</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>userGrade</td>
+<td>用户等级信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>userGrade.roleType</td>
+<td>角色类型</td>
+<td>Integer</td>
+<td>1合伙人 2发起人 3资金管理人</td>
+</tr>
+<tr>
+<td>userGrade.grade</td>
+<td>等级</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>userGrade.amount</td>
+<td>历史募集总金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-8"><a href="#响应报文示例-8" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":16000,
+        "retMsg":"查询发起人档案成功"
+    },
+    "body":{
+        "mailIsEnable":1,
+        "phoneIsBind":1,
+        "identityAuth":1,
+        "nickname":"duptest01",
+        "headPortraitsImage":"boy01.gif",
+        "avgActualYield":163543,
+        "failedCnt":60,
+        "successCnt":73,
+        "totalCnt":133,
+        "successPersent":5488,
+        "profitCnt":22,
+        "totalProfit":-3380762,
+        "partnerProfit":83864,
+        "avgAmount":3671667,
+        "userGrade":{
+            "roleType":1,
+            "grade":9,
+            "amount":268031700
+        }
+    }
+}
+</pre>
+
+<h4 id="10-资金管理人档案"><a href="#10-资金管理人档案" class="headerlink" title="10)    资金管理人档案"></a>10)    资金管理人档案</h4><h5 id="方法名称-9"><a href="#方法名称-9" class="headerlink" title="方法名称"></a>方法名称</h5><p>managerInfo</p>
+<h5 id="方法描述-9"><a href="#方法描述-9" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取发起人档案信息。</p>
+<h5 id="访问路径-9"><a href="#访问路径-9" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/managerInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/managerInfo/{seqId}</a></p>
+<h5 id="输入参数-9"><a href="#输入参数-9" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-9"><a href="#输出参数-9" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>mailIsEnable</td>
+<td>邮箱是否激活</td>
+<td>Integer</td>
+<td>1激活 0 未激活</td>
+</tr>
+<tr>
+<td>phoneIsBind</td>
+<td>手机是否绑定</td>
+<td>Integer</td>
+<td>1 绑定 0未绑定</td>
+</tr>
+<tr>
+<td>identityAuth</td>
+<td>身份认证</td>
+<td>Integer</td>
+<td>1认证 0未认证 2审核中</td>
+</tr>
+<tr>
+<td>nickname</td>
+<td>昵称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>headPortraitsImage</td>
+<td>头像文件名</td>
+<td>Varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>avgActualYield</td>
+<td>平均年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>operatingFundCnt</td>
+<td>操作中产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>liqedFundCnt</td>
+<td>已清盘产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>totalProductCnt</td>
+<td>操作产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>profitProductCnt</td>
+<td>盈利产品总数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>reachProfitPersent</td>
+<td>操作产品靠谱率</td>
+<td>Long</td>
+<td>整数表示小数，以小数点后四位开始记录</td>
+</tr>
+<tr>
+<td>partnerProfit</td>
+<td>合伙人总收益</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>totalAmount</td>
+<td>操作总金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>avgAmount</td>
+<td>平均操作产品规模</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>userGrade</td>
+<td>用户等级信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>userGrade.roleType</td>
+<td>角色类型</td>
+<td>Integer</td>
+<td>1合伙人 2发起人 3资金管理人</td>
+</tr>
+<tr>
+<td>userGrade.grade</td>
+<td>等级</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>userGrade.amount</td>
+<td>历史盈亏总金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-9"><a href="#响应报文示例-9" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":17000,
+        "retMsg":"查询资金管理人档案成功"
+    },
+    "body":{
+        "mailIsEnable":1,
+        "phoneIsBind":1,
+        "identityAuth":1,
+        "nickname":"duptest01",
+        "headPortraitsImage":"boy01.gif",
+        "avgActualYield":69084,
+        "operatingFundCnt":3,
+        "liqedFundCnt":35,
+        "totalProductCnt":38,
+        "profitProductCnt":6,
+        "reachProfitPersent":857,
+        "partnerProfit":-1832401,
+        "avgAmount":4563857,
+        "totalAmount":173426600,
+        "userGrade":{
+            "roleType":2,
+            "grade":9,
+            "amount":-5634197
+        }
+    }
+}
+</pre>
+
+<h4 id="11-我的入伙记录"><a href="#11-我的入伙记录" class="headerlink" title="11)    我的入伙记录"></a>11)    我的入伙记录</h4><h5 id="方法名称-10"><a href="#方法名称-10" class="headerlink" title="方法名称"></a>方法名称</h5><p>tradeDetailInfo</p>
+<h5 id="方法描述-10"><a href="#方法描述-10" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取入伙记录。</p>
+<h5 id="访问路径-10"><a href="#访问路径-10" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/tradeDetailInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/tradeDetailInfo/{seqId}</a></p>
+<h5 id="输入参数-10"><a href="#输入参数-10" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>status</td>
+<td>记录状态</td>
+<td>Integer</td>
+<td>募集期：2        操作期：3        已清盘：4</td>
+</tr>
+<tr>
+<td>sortName</td>
+<td>要排序的字段</td>
+<td>Integer</td>
+<td>允许排序的字段：入伙金额：401 入伙时间：405 操作中传值：404</td>
+</tr>
+<tr>
+<td>sortDesc</td>
+<td>排序类型</td>
+<td>Integer</td>
+<td>AES：0        DESC：1</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>数据起始页</td>
+<td>Integer</td>
+<td>起始页从1开始</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页数据大小</td>
+<td>Integer</td>
+<td>每页包含数据条数</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-10"><a href="#输出参数-10" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalTradeDetail</td>
+<td>入伙总记录数</td>
+<td>Integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList</td>
+<td>入伙记录列表</td>
+<td>List</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.tradeDetailId</td>
+<td>入伙记录ID</td>
+<td>Integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.fundName</td>
+<td>入伙产品名称</td>
+<td>Varchar(20)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.productType</td>
+<td>产品类型</td>
+<td>Integer</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.amount</td>
+<td>交易金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>tradeDetailList.latestEquity</td>
+<td>当前净值</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>tradeDetailList.expectPartnerYearYield</td>
+<td>预期年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>tradeDetailList.expectPartnerRegularYield</td>
+<td>合伙人预期固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>tradeDetailList.partnerRegularYearYield</td>
+<td>合伙人固定年化收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>tradeDetailList.actualPartnerRegularYield</td>
+<td>合伙人实际固定收益率</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>tradeDetailList.partnerRisk</td>
+<td>合伙人风险</td>
+<td>Integer</td>
+<td>整数表示小数，以小数点后两位开始记录</td>
+</tr>
+<tr>
+<td>tradeDetailList.fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.investScope</td>
+<td>投资范围</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.planOperHours</td>
+<td>计划操作小时数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.rate</td>
+<td>大象币使用费率</td>
+<td>int</td>
+<td>如12.34%，则返回1234，除以10000为0.1234</td>
+</tr>
+<tr>
+<td>tradeDetailList.multiple</td>
+<td>大象币杠杆率</td>
+<td>int</td>
+<td>若返回400，则400/100.0=实际倍率4.0</td>
+</tr>
+<tr>
+<td>tradeDetailList.managerId</td>
+<td>产品资金管理人ID</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.exFundInfo</td>
+<td>产品大象币信息</td>
+<td>Object</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.isLoanFund</td>
+<td>是否使用大象币</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.srcFix</td>
+<td>未用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>tradeDetailList.dxbFix</td>
+<td>使用大象币固定收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>tradeDetailList.srcFlt</td>
+<td>未用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+<tr>
+<td>tradeDetailList.dxbFlt</td>
+<td>使用大象币浮动收益率</td>
+<td>Integer</td>
+<td>正整数。若不支持则返回-1</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-10"><a href="#响应报文示例-10" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+        "totalTradeDetail":5,
+        "totalAmount":5,
+        "tradeDetailList":[
+            {
+                "tradeDetail":123,
+                "userId":1234,
+                "nickname":"asdf",
+                "amount":123,
+                "amountBalance":123,
+                "profitLossAmount":123,
+                "tradeTime":123
+            }
+        ]
+    }
+}
+</pre>
+
+<h4 id="12-产品入伙记录"><a href="#12-产品入伙记录" class="headerlink" title="12)    产品入伙记录"></a>12)    产品入伙记录</h4><h5 id="方法名称-11"><a href="#方法名称-11" class="headerlink" title="方法名称"></a>方法名称</h5><p>fundJoinDetailInfo</p>
+<h5 id="方法描述-11"><a href="#方法描述-11" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取产品入伙记录。</p>
+<h5 id="访问路径-11"><a href="#访问路径-11" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/fundJoinDetailInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/fundJoinDetailInfo/{seqId}</a></p>
+<h5 id="输入参数-11"><a href="#输入参数-11" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>数据起始页</td>
+<td>Integer</td>
+<td>起始页从1开始</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页数据大小</td>
+<td>Integer</td>
+<td>每页包含数据条数</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-11"><a href="#输出参数-11" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalTradeDetail</td>
+<td>入伙总记录数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList</td>
+<td>入伙记录列表</td>
+<td>List</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.nickname</td>
+<td>用户昵称</td>
+<td>Varchar(20)</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeDetailList.amount</td>
+<td>入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>tradeDetailList.amountBalance</td>
+<td>账户余额入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>tradeDetailList.type</td>
+<td>交易类型</td>
+<td>Integer</td>
+<td>1基金发起 2基金经理 3合伙</td>
+</tr>
+<tr>
+<td>tradeDetailList.profitLossAmount</td>
+<td>盈亏金额</td>
+<td>Long</td>
+<td>以分为单位，大于0盈利 小于0亏损</td>
+</tr>
+<tr>
+<td>tradeDetailList.tradeTime</td>
+<td>交易时间</td>
+<td>DateTime</td>
+<td>入伙时间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="13-入伙产品"><a href="#13-入伙产品" class="headerlink" title="13)    入伙产品"></a>13)    入伙产品</h4><h5 id="方法名称-12"><a href="#方法名称-12" class="headerlink" title="方法名称"></a>方法名称</h5><p>joinFund</p>
+<h5 id="方法描述-12"><a href="#方法描述-12" class="headerlink" title="方法描述"></a>方法描述</h5><p>入伙产品。</p>
+<h5 id="访问路径-12"><a href="#访问路径-12" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/fund/joinFund/{seqId}" target="_blank" rel="external">http://ServiceAddress/fund/joinFund/{seqId}</a></p>
+<h5 id="输入参数-12"><a href="#输入参数-12" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fundId</td>
+<td>产品ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePwd</td>
+<td>支付密码</td>
+<td>Varchar(64)</td>
+<td>未经过MD5加密</td>
+</tr>
+<tr>
+<td>countAmount</td>
+<td>总入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>账户余额入伙金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>manmonCion</td>
+<td>财神币</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>mammonServiceCion</td>
+<td>财神币服务费</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>redbagIds</td>
+<td>要使用的红包ID</td>
+<td>Varchar(512)</td>
+<td>红包ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333，</td>
+</tr>
+<tr>
+<td>caiShenTokenIds</td>
+<td>要使用的财神符ID</td>
+<td>Varchar(512)</td>
+<td>财神符ID的集合，使用英文逗号分隔的字符串，如：123123,1231233,222333</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-12"><a href="#输出参数-12" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-11"><a href="#响应报文示例-11" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+</pre>
+
+<h4 id="14-修改支付密码"><a href="#14-修改支付密码" class="headerlink" title="14)    修改支付密码"></a>14)    修改支付密码</h4><h5 id="方法名称-13"><a href="#方法名称-13" class="headerlink" title="方法名称"></a>方法名称</h5><p>changeTradePwd</p>
+<h5 id="方法描述-13"><a href="#方法描述-13" class="headerlink" title="方法描述"></a>方法描述</h5><p>修改支付密码。</p>
+<h5 id="访问路径-13"><a href="#访问路径-13" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/changeTradePwd/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/changeTradePwd/{seqId}</a></p>
+<h5 id="输入参数-13"><a href="#输入参数-13" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePwdOld</td>
+<td>原支付密码</td>
+<td>Varchar(64)</td>
+<td>未经过MD5加密，初始设置密码该字段可以为空</td>
+</tr>
+<tr>
+<td>tradePwd</td>
+<td>新支付密码</td>
+<td>Varchar(64)</td>
+<td>未经过MD5加密</td>
+</tr>
+<tr>
+<td>type</td>
+<td>方式</td>
+<td>Integer</td>
+<td>1、忘记登陆密码2、修改登陆密码</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机号码</td>
+<td>Varchar(11)</td>
+<td></td>
+</tr>
+<tr>
+<td>phoneCode</td>
+<td>校验内容</td>
+<td>Varchar(64)</td>
+<td>接口调用方式为2时此字段为空字符串</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-13"><a href="#输出参数-13" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-12"><a href="#响应报文示例-12" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+</pre>
+
+<h4 id="15-修改登陆密码"><a href="#15-修改登陆密码" class="headerlink" title="15)    修改登陆密码"></a>15)    修改登陆密码</h4><h5 id="方法名称-14"><a href="#方法名称-14" class="headerlink" title="方法名称"></a>方法名称</h5><p>changeLoginPwd</p>
+<h5 id="方法描述-14"><a href="#方法描述-14" class="headerlink" title="方法描述"></a>方法描述</h5><p>修改登陆密码。</p>
+<h5 id="访问路径-14"><a href="#访问路径-14" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/changeLoginPwd/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/changeLoginPwd/{seqId}</a></p>
+<h5 id="输入参数-14"><a href="#输入参数-14" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>loginPwdOld</td>
+<td>原登陆密码</td>
+<td>Varchar(64)</td>
+<td>未经过MD5加密，初始设置密码该字段可以为空</td>
+</tr>
+<tr>
+<td>loginPwd</td>
+<td>新登陆密码</td>
+<td>Varchar(64)</td>
+<td>未经过MD5加密</td>
+</tr>
+<tr>
+<td>type</td>
+<td>方式</td>
+<td>Integer</td>
+<td>1、忘记登陆密码2、修改登陆密码</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机号码</td>
+<td>Varchar(11)</td>
+<td></td>
+</tr>
+<tr>
+<td>phoneCode</td>
+<td>校验内容</td>
+<td>Varchar(64)</td>
+<td>接口调用方式为2时此字段为空字符串</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>Token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-14"><a href="#输出参数-14" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-13"><a href="#响应报文示例-13" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+</pre>
+
+<h4 id="16-短信校验"><a href="#16-短信校验" class="headerlink" title="16)    短信校验"></a>16)    短信校验</h4><h5 id="方法名称-15"><a href="#方法名称-15" class="headerlink" title="方法名称"></a>方法名称</h5><p>msgValidate</p>
+<h5 id="方法描述-15"><a href="#方法描述-15" class="headerlink" title="方法描述"></a>方法描述</h5><p>用于需要做短信校验的地方，可以发送校验短信校验码和校验短信验证码</p>
+<h5 id="访问路径-15"><a href="#访问路径-15" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/msgValidate/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/msgValidate/{seqId}</a></p>
+<h5 id="输入参数-15"><a href="#输入参数-15" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>msgContent</td>
+<td>校验内容</td>
+<td>Varchar(64)</td>
+<td>接口调用方式为1时此字段为空字符串</td>
+</tr>
+<tr>
+<td>toPhone</td>
+<td>接受短信手机</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>方式</td>
+<td>Integer</td>
+<td>1、发送短信2、校验短信</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-15"><a href="#输出参数-15" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-14"><a href="#响应报文示例-14" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+
+</pre>
+
+
+<h4 id="17-用户意见反馈"><a href="#17-用户意见反馈" class="headerlink" title="17)    用户意见反馈"></a>17)    用户意见反馈</h4><h5 id="方法名称-16"><a href="#方法名称-16" class="headerlink" title="方法名称"></a>方法名称</h5><p>userFeedback</p>
+<h5 id="方法描述-16"><a href="#方法描述-16" class="headerlink" title="方法描述"></a>方法描述</h5><p>用户意见反馈</p>
+<h5 id="访问路径-16"><a href="#访问路径-16" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/userFeedback/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/userFeedback/{seqId}</a></p>
+<h5 id="输入参数-16"><a href="#输入参数-16" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>contact</td>
+<td>联系方式</td>
+<td>Varchar(128)</td>
+<td>可选</td>
+</tr>
+<tr>
+<td>msgContent</td>
+<td>反馈内容</td>
+<td>Varchar(256)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-16"><a href="#输出参数-16" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-15"><a href="#响应报文示例-15" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+
+</pre>
+
+<h4 id="18-获取活动内容列表"><a href="#18-获取活动内容列表" class="headerlink" title="18)    获取活动内容列表"></a>18)    获取活动内容列表</h4><h5 id="方法名称-17"><a href="#方法名称-17" class="headerlink" title="方法名称"></a>方法名称</h5><p>getActivityList</p>
+<h5 id="方法描述-17"><a href="#方法描述-17" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取活动内容列表</p>
+<h5 id="访问路径-17"><a href="#访问路径-17" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/getActivityList/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/getActivityList/{seqId}</a></p>
+<h5 id="输入参数-17"><a href="#输入参数-17" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>position</td>
+<td>按照活动所在位置获取</td>
+<td>Integer</td>
+<td>可选参数。1、首页轮播图2、热门活动列表</td>
+</tr>
+<tr>
+<td>IsTop</td>
+<td>按照置顶类型获取</td>
+<td>Integer</td>
+<td>可选参数。1、只获取置顶活动 0、只获取非指定活动</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-17"><a href="#输出参数-17" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>activityList</td>
+<td>活动列表</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>activityList.activityId</td>
+<td>活动ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>activityList.activityReviewImgUrl</td>
+<td>活动预览图片路径</td>
+<td>Varchar(256)</td>
+<td></td>
+</tr>
+<tr>
+<td>activityList.activityTitle</td>
+<td>活动标题</td>
+<td>Varchar(128)</td>
+<td></td>
+</tr>
+<tr>
+<td>activityList.activitySubTitle</td>
+<td>活动子标题</td>
+<td>Varchar(512)</td>
+<td>活动内容简单描述</td>
+</tr>
+<tr>
+<td>activityList.activityImgUrl</td>
+<td>活动图片URL</td>
+<td>Varchar(512)</td>
+<td>活动缩略图片，如果未返回，使用默认大象logo图片</td>
+</tr>
+<tr>
+<td>activityList.isShare</td>
+<td>是否可分享</td>
+<td>Boolean</td>
+<td>是否可分享</td>
+</tr>
+<tr>
+<td>activityList.activityDesUrl</td>
+<td>活动最终跳转url</td>
+<td>Varchar(128)</td>
+<td></td>
+</tr>
+<tr>
+<td>activityList.position</td>
+<td>显示位置</td>
+<td>Varchar(128)</td>
+<td>1、首页轮播图2、热门活动列表。每个位置可能会包含多个位置信息，并且为逗号分割的字符串。</td>
+</tr>
+<tr>
+<td>activityList.date</td>
+<td>添加时间</td>
+<td>date</td>
+<td>时间戳</td>
+</tr>
+<tr>
+<td>activityList.IsTop</td>
+<td>是否置顶</td>
+<td>Boolean</td>
+<td>1、true  0、false</td>
+</tr>
+<tr>
+<td>activityList</td>
+<td>活动列表结束</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-16"><a href="#响应报文示例-16" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><h4 id="19-获取版本信息"><a href="#19-获取版本信息" class="headerlink" title="19)    获取版本信息"></a>19)    获取版本信息</h4><h5 id="方法名称-18"><a href="#方法名称-18" class="headerlink" title="方法名称"></a>方法名称</h5><p>interfaceVerInfo</p>
+<h5 id="方法描述-18"><a href="#方法描述-18" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取版本信息。</p>
+<h5 id="访问路径-18"><a href="#访问路径-18" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/interfaceVerInfo/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/interfaceVerInfo/{seqId}</a></p>
+<h5 id="输入参数-18"><a href="#输入参数-18" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>currentVersionCode</td>
+<td>客户端版本号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>channel</td>
+<td>客户端渠道号</td>
+<td>Integer</td>
+<td>非必填字段，向前兼容</td>
+</tr>
+<tr>
+<td>默认为99999官方渠道</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-18"><a href="#输出参数-18" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>remoteVersionName</td>
+<td>服务端版本名称</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>remoteVersionCode</td>
+<td>服务端版本号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>版本描述</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>downloadUrl</td>
+<td>版本下载地址</td>
+<td></td>
+<td>指向最新安装文件的http地址</td>
+</tr>
+<tr>
+<td>md5</td>
+<td>校验值</td>
+<td></td>
+<td>该版本安装文件的MD5校验值</td>
+</tr>
+<tr>
+<td>updateType</td>
+<td>升级方式</td>
+<td>Integer</td>
+<td>1、增量升级2、全新升级</td>
+</tr>
+<tr>
+<td>isMustUpdate</td>
+<td>是否必须升级</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-17"><a href="#响应报文示例-17" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+        "remoteVersion":"asdf",
+        "updateType":1,
+        "isMustUpdate":true
+    }
+}
+</pre>
+
+<h4 id="20-获取银行卡信息"><a href="#20-获取银行卡信息" class="headerlink" title="20)    获取银行卡信息"></a>20)    获取银行卡信息</h4><h5 id="方法名称-19"><a href="#方法名称-19" class="headerlink" title="方法名称"></a>方法名称</h5><p>getBankDetail</p>
+<h5 id="方法描述-19"><a href="#方法描述-19" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取银行卡信息</p>
+<h5 id="访问路径-19"><a href="#访问路径-19" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/getBankDetail/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/getBankDetail/{seqId}</a></p>
+<h5 id="输入参数-19"><a href="#输入参数-19" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>Varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-19"><a href="#输出参数-19" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bankDrtailList</td>
+<td>银行卡信息</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.lastestBankCardId</td>
+<td>最后使用银行卡id</td>
+<td>integer</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.id</td>
+<td>银行卡ID</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.name</td>
+<td>开户人</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.bankType</td>
+<td>银行类型</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.bankName</td>
+<td>总行名称</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.bankCardNum</td>
+<td>银行卡号</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.bindTime</td>
+<td>绑定时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.unbindTime</td>
+<td>解绑时间</td>
+<td>DateTime</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.cardProvice</td>
+<td>银行卡所属省</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.cardCity</td>
+<td>银行卡所属市</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList.cardBankDetail</td>
+<td>银行卡支行名称</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDrtailList</td>
+<td>银行卡信息结束</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-18"><a href="#响应报文示例-18" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+        bankDrtailList: 
+    }
+}
+</pre>
+
+<hr>
+<h4 id="21-线上取款申请"><a href="#21-线上取款申请" class="headerlink" title="21)线上取款申请"></a>21)线上取款申请</h4><h5 id="方法名称-20"><a href="#方法名称-20" class="headerlink" title="方法名称"></a>方法名称</h5><p>withDraw</p>
+<h5 id="方法描述-20"><a href="#方法描述-20" class="headerlink" title="方法描述"></a>方法描述</h5><p> 线上取款申请</p>
+<h5 id="访问路径-20"><a href="#访问路径-20" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/withDraw/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/withDraw/{seqId}</a></p>
+<h5 id="输入参数-20"><a href="#输入参数-20" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankID</td>
+<td>银行卡id</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>开户人</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>取款金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>curreny</td>
+<td>币种</td>
+<td>Integer</td>
+<td>1人民币 2美金 3港币</td>
+</tr>
+<tr>
+<td>tradePwd</td>
+<td>支付密码</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>phone</td>
+<td>验证码</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>phoneCode</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sendTime</td>
+<td>时间戳</td>
+<td>varchar(24)</td>
+<td>发送消息时间戳</td>
+</tr>
+<tr>
+<td>validateMsg</td>
+<td>消息信息</td>
+<td>varchar(24)</td>
+<td>校验字段：所有字段值拼装成字符串 做加密（和消息用一套）</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-20"><a href="#输出参数-20" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-19"><a href="#响应报文示例-19" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+</pre>
+
+<hr>
+<h4 id="22-线上支付申请"><a href="#22-线上支付申请" class="headerlink" title="22)线上支付申请"></a>22)线上支付申请</h4><h5 id="方法名称-21"><a href="#方法名称-21" class="headerlink" title="方法名称"></a>方法名称</h5><p>rechargeApplication</p>
+<h5 id="方法描述-21"><a href="#方法描述-21" class="headerlink" title="方法描述"></a>方法描述</h5><p> 线上支付申请</p>
+<h5 id="访问路径-21"><a href="#访问路径-21" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/rechargeApplication/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/rechargeApplication/{seqId}</a></p>
+<h5 id="输入参数-21"><a href="#输入参数-21" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>payType</td>
+<td>汇款渠道</td>
+<td></td>
+<td>1、通联  2、易宝</td>
+</tr>
+<tr>
+<td>currencyType</td>
+<td>币种</td>
+<td>varchar(24)</td>
+<td>1人民币 2美金 3港币</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>金额</td>
+<td>long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>sendTime</td>
+<td>时间戳</td>
+<td>varchar(24)</td>
+<td>发送消息时间戳</td>
+</tr>
+<tr>
+<td>validateMsg</td>
+<td>消息信息</td>
+<td>varchar(24)</td>
+<td>校验字段：所有字段值拼装成字符串 做加密（和消息用一套）</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-21"><a href="#输出参数-21" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>orderNo</td>
+<td>平台交易流水</td>
+<td>Varchar（32）</td>
+<td></td>
+</tr>
+<tr>
+<td>orderAmount</td>
+<td>整型数字，金额与币种有关</td>
+<td>number</td>
+<td>如果是人民币，则单位是分，即 10 元提交时金额应为 1000，如果是美元，单位是美分，即 10 美元提交时金额为 1000</td>
+</tr>
+<tr>
+<td>orderDatetime</td>
+<td>订单生成的时间</td>
+<td>Varchar（32）</td>
+<td>订单生成的时间</td>
+</tr>
+<tr>
+<td>productName</td>
+<td>商品名称</td>
+<td>Varchar（32）</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-20"><a href="#响应报文示例-20" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="23-线上支付确认"><a href="#23-线上支付确认" class="headerlink" title="23)线上支付确认"></a>23)线上支付确认</h4><h5 id="方法名称-22"><a href="#方法名称-22" class="headerlink" title="方法名称"></a>方法名称</h5><p>paymentConfirm</p>
+<h5 id="方法描述-22"><a href="#方法描述-22" class="headerlink" title="方法描述"></a>方法描述</h5><p> 线上支付确认</p>
+<h5 id="访问路径-22"><a href="#访问路径-22" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/paymentConfirm/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/paymentConfirm/{seqId}</a></p>
+<h5 id="输入参数-22"><a href="#输入参数-22" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>orderNo</td>
+<td>平台交易流水</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>amount</td>
+<td>金额</td>
+<td>long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>orderDatetime</td>
+<td>订单生成的时间</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>resultPay</td>
+<td>结果</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>Varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-22"><a href="#输出参数-22" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-21"><a href="#响应报文示例-21" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="24-验证信息"><a href="#24-验证信息" class="headerlink" title="24)验证信息"></a>24)验证信息</h4><h5 id="方法名称-23"><a href="#方法名称-23" class="headerlink" title="方法名称"></a>方法名称</h5><p>validate</p>
+<h5 id="方法描述-23"><a href="#方法描述-23" class="headerlink" title="方法描述"></a>方法描述</h5><p> 通过调用此接口 验证用户输入的手机、邮箱、昵称等是不是重复</p>
+<h5 id="访问路径-23"><a href="#访问路径-23" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/validate/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/validate/{seqId}</a></p>
+<h5 id="输入参数-23"><a href="#输入参数-23" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>手机号码</td>
+<td>varchar(11)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>email</td>
+<td>邮箱</td>
+<td>varchar(64)</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>nikeName</td>
+<td>昵称</td>
+<td>varchar(20)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-23"><a href="#输出参数-23" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-22"><a href="#响应报文示例-22" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="25-绑定银行卡"><a href="#25-绑定银行卡" class="headerlink" title="25)绑定银行卡"></a>25)绑定银行卡</h4><h5 id="方法名称-24"><a href="#方法名称-24" class="headerlink" title="方法名称"></a>方法名称</h5><p> addBankCard</p>
+<h5 id="方法描述-24"><a href="#方法描述-24" class="headerlink" title="方法描述"></a>方法描述</h5><p> 通过调用此接口 绑定银行卡信息</p>
+<h5 id="访问路径-24"><a href="#访问路径-24" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/addBankCard/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/addBankCard/{seqId}</a></p>
+<h5 id="输入参数-24"><a href="#输入参数-24" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>bankType</td>
+<td>银行类型</td>
+<td>varchar(64)</td>
+<td>例如：BOC-NET-B2C</td>
+</tr>
+<tr>
+<td>bankCardNum</td>
+<td>银行卡号</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>cardProvice</td>
+<td>银行卡所属省</td>
+<td>varchar(32)</td>
+<td>例如：150000</td>
+</tr>
+<tr>
+<td>cardCity</td>
+<td>银行卡所属市</td>
+<td>varchar(32)</td>
+<td>例如：150100</td>
+</tr>
+<tr>
+<td>cardBankDetail</td>
+<td>银行卡支行名称</td>
+<td>varchar(128)</td>
+<td>例如：中国银行股份有限公司和林格尔县支行</td>
+</tr>
+<tr>
+<td>name</td>
+<td>开户人</td>
+<td>varchar(20)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-24"><a href="#输出参数-24" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-23"><a href="#响应报文示例-23" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="26-取消绑定银行卡"><a href="#26-取消绑定银行卡" class="headerlink" title="26)    取消绑定银行卡"></a>26)    取消绑定银行卡</h4><h5 id="方法名称-25"><a href="#方法名称-25" class="headerlink" title="方法名称"></a>方法名称</h5><p>delBankCard</p>
+<h5 id="方法描述-25"><a href="#方法描述-25" class="headerlink" title="方法描述"></a>方法描述</h5><p> 通过调用此接口 绑定银行卡信息。 </p>
+<h5 id="访问路径-25"><a href="#访问路径-25" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/delBankCard/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/delBankCard/{seqId}</a></p>
+<h5 id="输入参数-25"><a href="#输入参数-25" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>cardId</td>
+<td>银行卡号id</td>
+<td>varchar(10)</td>
+<td></td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(32)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-25"><a href="#输出参数-25" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-24"><a href="#响应报文示例-24" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="27-获取支行信息"><a href="#27-获取支行信息" class="headerlink" title="27)    获取支行信息"></a>27)    获取支行信息</h4><h5 id="方法名称-26"><a href="#方法名称-26" class="headerlink" title="方法名称"></a>方法名称</h5><p>getSubBranchDetail</p>
+<h5 id="方法描述-26"><a href="#方法描述-26" class="headerlink" title="方法描述"></a>方法描述</h5><p>通过调用此接口 绑定银行卡信息。 </p>
+<h5 id="访问路径-26"><a href="#访问路径-26" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/getSubBranchDetail/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/getSubBranchDetail/{seqId}</a></p>
+<h5 id="输入参数-26"><a href="#输入参数-26" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>bankType</td>
+<td>银行类型</td>
+<td>varchar(64)</td>
+<td>例如：BOC-NET-B2C</td>
+</tr>
+<tr>
+<td>cardProvice</td>
+<td>银行卡所属省</td>
+<td>varchar(32)</td>
+<td>例如：150000</td>
+</tr>
+<tr>
+<td>cardCity</td>
+<td>银行卡所属市</td>
+<td>varchar(32)</td>
+<td>例如：150100</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-26"><a href="#输出参数-26" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bankDetailList</td>
+<td>用户等级列表开始</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>bankDetailList.bankDetail</td>
+<td>段位金额</td>
+<td>Long</td>
+<td></td>
+</tr>
+<tr>
+<td>bankDetailList</td>
+<td>用户等级列表结束</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-25"><a href="#响应报文示例-25" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+         " bankDetailList ":[
+            {
+             bankDetail: 中国银行蠡县支行
+            }
+        ]
+
+    }
+}
+
+
+</pre>
+
+<hr>
+<h4 id="28-线下支付申请"><a href="#28-线下支付申请" class="headerlink" title="28)    线下支付申请"></a>28)    线下支付申请</h4><h5 id="方法名称-27"><a href="#方法名称-27" class="headerlink" title="方法名称"></a>方法名称</h5><p>offlineApply</p>
+<h5 id="方法描述-27"><a href="#方法描述-27" class="headerlink" title="方法描述"></a>方法描述</h5><p>通过调用此接口 提交服务端 线下支付详细信息。 </p>
+<h5 id="访问路径-27"><a href="#访问路径-27" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/offlineApply/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/offlineApply/{seqId}</a></p>
+<h5 id="输入参数-27"><a href="#输入参数-27" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户id</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>chargeRealName</td>
+<td>充值真实姓名</td>
+<td>varchar(32)</td>
+<td>例如：150100</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>充值金额</td>
+<td>integer(32)</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>payType</td>
+<td>充值渠道</td>
+<td>integer(4)</td>
+<td>1 银行  2 第三方</td>
+</tr>
+<tr>
+<td>bankType</td>
+<td>银行类型</td>
+<td>varchar (32)</td>
+<td>例如：BOC-NET-B2C</td>
+</tr>
+<tr>
+<td>bankCardNo</td>
+<td>银行卡号</td>
+<td>varchar (32)</td>
+<td></td>
+</tr>
+<tr>
+<td>otherName</td>
+<td>第三方名称</td>
+<td>varchar(32)</td>
+<td>第三方名称</td>
+</tr>
+<tr>
+<td>bankCardNoOther</td>
+<td>第三方帐号</td>
+<td>varchar(32)</td>
+<td>第三方帐号</td>
+</tr>
+<tr>
+<td>remark</td>
+<td>备注</td>
+<td>varchar(128)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-27"><a href="#输出参数-27" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-26"><a href="#响应报文示例-26" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="29-获取分享规则列表"><a href="#29-获取分享规则列表" class="headerlink" title="29)    获取分享规则列表"></a>29)    获取分享规则列表</h4><h5 id="方法名称-28"><a href="#方法名称-28" class="headerlink" title="方法名称"></a>方法名称</h5><p>getShareList</p>
+<h5 id="方法描述-28"><a href="#方法描述-28" class="headerlink" title="方法描述"></a>方法描述</h5><p>通过此接口 获取分享规则列表。 </p>
+<h5 id="访问路径-28"><a href="#访问路径-28" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/getShareList/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/getShareList/{seqId}</a></p>
+<h5 id="输入参数-28"><a href="#输入参数-28" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-28"><a href="#输出参数-28" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shareList</td>
+<td>分享规则列表开始</td>
+<td>Array</td>
+<td>返回列表对象</td>
+</tr>
+<tr>
+<td>shareList.id</td>
+<td>记录ID</td>
+<td>Int</td>
+<td></td>
+</tr>
+<tr>
+<td>shareList.src</td>
+<td>分享来源</td>
+<td>Int</td>
+<td>1-活动；2-产品；等</td>
+</tr>
+<tr>
+<td>shareList.tagId</td>
+<td>目标ID</td>
+<td>int</td>
+<td>若src=1，则对应活动ID；若src=2，则对应产品ID</td>
+</tr>
+<tr>
+<td>shareList.beginTime</td>
+<td>开始有效期</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>shareList.endTime</td>
+<td>结束有效期</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>shareList.status</td>
+<td>状态</td>
+<td>int</td>
+<td>1-有效；2-禁用；3-删除</td>
+</tr>
+<tr>
+<td>shareList.title</td>
+<td>分享标题</td>
+<td>varchar(256)</td>
+<td></td>
+</tr>
+<tr>
+<td>shareList.logoType</td>
+<td>图标类型</td>
+<td>int</td>
+<td>1-APP自带图标；2-网络图片</td>
+</tr>
+<tr>
+<td>shareList.logoUrl</td>
+<td>图标Url</td>
+<td>varchar(256)</td>
+<td>图标：http网络图片Url</td>
+</tr>
+<tr>
+<td>shareList.content</td>
+<td>分享内容</td>
+<td>varchar(1024)</td>
+<td></td>
+</tr>
+<tr>
+<td>shareList.shareUrl</td>
+<td>跳转Url</td>
+<td>varchar(256)</td>
+<td>分享后点击跳转的Url</td>
+</tr>
+<tr>
+<td>shareList</td>
+<td>用户等级列表结束</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-27"><a href="#响应报文示例-27" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":38000,
+        "retMsg":"成功"
+    },
+    "body":{
+    "shareList":[]
+    }
+}
+
+</pre>
+
+<hr>
+<h4 id="30-添加分享记录"><a href="#30-添加分享记录" class="headerlink" title="30)    添加分享记录"></a>30)    添加分享记录</h4><h5 id="方法名称-29"><a href="#方法名称-29" class="headerlink" title="方法名称"></a>方法名称</h5><p>addShareRecord</p>
+<h5 id="方法描述-29"><a href="#方法描述-29" class="headerlink" title="方法描述"></a>方法描述</h5><p> 向服务器添加分享操作记录。 </p>
+<h5 id="访问路径-29"><a href="#访问路径-29" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/addShareRecord/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/addShareRecord/{seqId}</a></p>
+<h5 id="输入参数-29"><a href="#输入参数-29" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>shareId</td>
+<td>分享规则ID</td>
+<td>int</td>
+<td>对应getShareList中的ID字段</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>平台类型</td>
+<td></td>
+<td>1-Android；2-iOS；等</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>分享渠道</td>
+<td></td>
+<td>1-微信；2-朋友圈；3-微博；4-QQ；等</td>
+</tr>
+<tr>
+<td>srcId</td>
+<td>分享者ID</td>
+<td></td>
+<td>若platform=1 or 2，则对应客户端UserID；若用户没有登录，则为0；若platform为其他值，则暂时定为0</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-29"><a href="#输出参数-29" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-28"><a href="#响应报文示例-28" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":39000,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+
+
+</pre>
+
+
+<hr>
+<h4 id="31-客户端启动检测"><a href="#31-客户端启动检测" class="headerlink" title="31)    客户端启动检测"></a>31)    客户端启动检测</h4><h5 id="方法名称-30"><a href="#方法名称-30" class="headerlink" title="方法名称"></a>方法名称</h5><p>startupCheck</p>
+<h5 id="方法描述-30"><a href="#方法描述-30" class="headerlink" title="方法描述"></a>方法描述</h5><p> 获取版本信息。</p>
+<h5 id="访问路径-30"><a href="#访问路径-30" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/startupCheck/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/startupCheck/{seqId}</a></p>
+<h5 id="输入参数-30"><a href="#输入参数-30" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform</td>
+<td>平台类型</td>
+<td>Integer</td>
+<td>1-iOS；2-Android</td>
+</tr>
+<tr>
+<td>version</td>
+<td>版本编号</td>
+<td>Integer</td>
+<td>iOS：自定义Code     Android：VersionCode</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>渠道编号</td>
+<td>Integer</td>
+<td>非必填字段  默认为99999官方渠道</td>
+</tr>
+<tr>
+<td>lastId</td>
+<td>最后显示 公告编号</td>
+<td>Integer</td>
+<td>非必填字段 默认为0</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-30"><a href="#输出参数-30" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retCode</td>
+<td>返回码</td>
+<td>Integer</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>retMsg</td>
+<td>返回消息</td>
+<td>Varchar(256)</td>
+<td>返回描述</td>
+</tr>
+<tr>
+<td>updateInfo</td>
+<td>升级信息</td>
+<td>Object</td>
+<td>iOS：nullAndroid：同获取版本信息</td>
+</tr>
+<tr>
+<td>lastNotify</td>
+<td>弹窗公告</td>
+<td>Object</td>
+<td>返回符合平台和版本条件的最新公告，否则返回null</td>
+</tr>
+<tr>
+<td>remoteVersionName</td>
+<td>服务端版本名称</td>
+<td>Varchar(24)</td>
+<td></td>
+</tr>
+<tr>
+<td>remoteVersionCode</td>
+<td>服务端版本号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>版本描述</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>downloadUrl</td>
+<td>版本下载地址</td>
+<td></td>
+<td>指向最新安装文件的http地址</td>
+</tr>
+<tr>
+<td>md5</td>
+<td>校验值</td>
+<td></td>
+<td>该版本安装文件的MD5校验值</td>
+</tr>
+<tr>
+<td>updateType</td>
+<td>升级方式</td>
+<td>Integer</td>
+<td>1、增量升级2、全新升级</td>
+</tr>
+<tr>
+<td>isMustUpdate</td>
+<td>是否必须升级</td>
+<td>Boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>编号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>title</td>
+<td>公告标题</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>summary</td>
+<td>弹窗摘要</td>
+<td>varchar(400)</td>
+<td></td>
+</tr>
+<tr>
+<td>content</td>
+<td>公告正文</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>isPop</td>
+<td>是否弹窗</td>
+<td>Integer</td>
+<td>1-弹出；0-不弹</td>
+</tr>
+<tr>
+<td>platformType</td>
+<td>平台类型</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>versionCode</td>
+<td>版本编码</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>limitBegin</td>
+<td>有效起始时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>limitEnd</td>
+<td>有效结束时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>level</td>
+<td>优先级</td>
+<td>Integer</td>
+<td>0-最低；9-最高</td>
+</tr>
+<tr>
+<td>status</td>
+<td>状态</td>
+<td>Integer</td>
+<td>0-隐藏；1-显示；-1-删除</td>
+</tr>
+<tr>
+<td>createTime</td>
+<td>发布时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>updateTime</td>
+<td>更新时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>reserve</td>
+<td>备用</td>
+<td>varchar(100)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-29"><a href="#响应报文示例-29" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+请求：
+POST请求即可。
+响应：
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+
+
+</pre>
+
+
+<hr>
+<h4 id="32-获取手机公告列表"><a href="#32-获取手机公告列表" class="headerlink" title="32)    获取手机公告列表"></a>32)    获取手机公告列表</h4><h5 id="方法名称-31"><a href="#方法名称-31" class="headerlink" title="方法名称"></a>方法名称</h5><p>getNotifyList</p>
+<h5 id="方法描述-31"><a href="#方法描述-31" class="headerlink" title="方法描述"></a>方法描述</h5><p> 获取手机端公告列表。</p>
+<h5 id="访问路径-31"><a href="#访问路径-31" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/system/getNotifyList/{seqId}" target="_blank" rel="external">http://ServiceAddress/system/getNotifyList/{seqId}</a></p>
+<h5 id="输入参数-31"><a href="#输入参数-31" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>platform</td>
+<td>平台类型</td>
+<td>Integer</td>
+<td>1-iOS；2-Android</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>数据起始页</td>
+<td>Integer</td>
+<td>起始页从1开始</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页数据大小</td>
+<td>Integer</td>
+<td>每页包含数据条数</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-31"><a href="#输出参数-31" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retCode</td>
+<td>返回码</td>
+<td>Integer</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>retMsg</td>
+<td>返回消息</td>
+<td>varchar(256)</td>
+<td>返回描述</td>
+</tr>
+<tr>
+<td>notifyList</td>
+<td>公告列表</td>
+<td>List</td>
+<td>公告列表集合</td>
+</tr>
+<tr>
+<td>total</td>
+<td>总条数</td>
+<td>Integer</td>
+<td>所有符合条件的公告</td>
+</tr>
+<tr>
+<td>notifyList</td>
+<td>notifyList列表开始</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.id</td>
+<td>编号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.title</td>
+<td>公告标题</td>
+<td>varchar(50)</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.summary</td>
+<td>弹窗摘要</td>
+<td>varchar(400)</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.content</td>
+<td>公告正文</td>
+<td>text</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.isPop</td>
+<td>是否弹窗</td>
+<td>Integer</td>
+<td>1-弹出；0-不弹</td>
+</tr>
+<tr>
+<td>notifyList.platformType</td>
+<td>平台类型</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.versionCode</td>
+<td>版本编码</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>notifyList.limitBegin</td>
+<td>有效起始时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>notifyList.limitEnd</td>
+<td>有效结束时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>notifyList.level</td>
+<td>优先级</td>
+<td>Integer</td>
+<td>0-最低；9-最高</td>
+</tr>
+<tr>
+<td>notifyList.status</td>
+<td>状态</td>
+<td>Integer</td>
+<td>0-隐藏；1-显示；-1-删除</td>
+</tr>
+<tr>
+<td>notifyList.createTime</td>
+<td>发布时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>notifyList.updateTime</td>
+<td>更新时间</td>
+<td>string</td>
+<td>yyyy-MM-dd HH:mm:ss</td>
+</tr>
+<tr>
+<td>notifyList.reserve</td>
+<td>备用</td>
+<td>varchar(100)</td>
+<td></td>
+</tr>
+<tr>
+<td>userGradeInfoList</td>
+<td>notifyList列表结束</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-30"><a href="#响应报文示例-30" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+请求：
+POST请求即可。
+响应：
+{
+    "header":{
+        "retCode":41000,
+        "retMsg":"成功"
+    },
+    "body":{
+    }
+}
+</pre>
+
+<hr>
+<h4 id="33-发送HELLO包"><a href="#33-发送HELLO包" class="headerlink" title="33)    发送HELLO包"></a>33)    发送HELLO包</h4><h5 id="方法名称-32"><a href="#方法名称-32" class="headerlink" title="方法名称"></a>方法名称</h5><p>hello</p>
+<h5 id="方法描述-32"><a href="#方法描述-32" class="headerlink" title="方法描述"></a>方法描述</h5><p> 向服务器发送HELLO包，以测试到服务器网络连接是否畅通。</p>
+<h5 id="访问路径-32"><a href="#访问路径-32" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/test/hello/{seqId}" target="_blank" rel="external">http://ServiceAddress/test/hello/{seqId}</a></p>
+<h5 id="输入参数-32"><a href="#输入参数-32" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌值</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-32"><a href="#输出参数-32" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retCode</td>
+<td>返回码</td>
+<td>Integer</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>retMsg</td>
+<td>返回消息</td>
+<td>varchar(256)</td>
+<td>返回描述</td>
+</tr>
+<tr>
+<td>serverTime</td>
+<td>服务器时间</td>
+<td>DateTime</td>
+<td>返回服务器当前的北京时间，精确到毫秒</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-31"><a href="#响应报文示例-31" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+请求：
+POST请求即可。
+响应：
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+        "serverTime":"2014-11-06 16:24:12.395"
+    }
+}
+
+</pre>
+
+
+<h4 id="34-策略详情-策略总览（3-0-1新增接口）"><a href="#34-策略详情-策略总览（3-0-1新增接口）" class="headerlink" title="34)策略详情-策略总览（3.0.1新增接口）"></a>34)策略详情-策略总览（3.0.1新增接口）</h4><h5 id="方法名称-33"><a href="#方法名称-33" class="headerlink" title="方法名称"></a>方法名称</h5><p>strategyDetail</p>
+<h5 id="方法描述-33"><a href="#方法描述-33" class="headerlink" title="方法描述"></a>方法描述</h5><p>获取策略总览标签页信息。 </p>
+<h5 id="访问路径-33"><a href="#访问路径-33" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/strategyDetail/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/strategyDetail/{seqId}</a></p>
+<h5 id="输入参数-33"><a href="#输入参数-33" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td>非必录项</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-33"><a href="#输出参数-33" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>id</td>
+<td>策略ID</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>策略名称</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>caption</td>
+<td>策略说明</td>
+<td>varchar(1024)</td>
+<td></td>
+</tr>
+<tr>
+<td>profitRate</td>
+<td>当前收益率</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>provider</td>
+<td>领投人</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>feeRate</td>
+<td>策略费率</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>followMoney</td>
+<td>跟投总额</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>providerFollowMoney</td>
+<td>领投人资金</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>accountEquity</td>
+<td>当前净值</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>maxDrawdown</td>
+<td>最大回撤</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>profitRate7d</td>
+<td>近7天盈利率</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>profitRate30d</td>
+<td>近30天盈利率</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>publicDays</td>
+<td>公开时间</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>followNumberActive</td>
+<td>跟投人数</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>followNumberTotal</td>
+<td>累计跟投人数</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>follow</td>
+<td>是否允许跟投</td>
+<td>int</td>
+<td>1:可以跟投    0：不可以跟投</td>
+</tr>
+<tr>
+<td>earningsList</td>
+<td>earningsList列表开始</td>
+</tr>
+<tr>
+<td>earningsList.createTime</td>
+<td>更新净值日期</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList.unitEquity</td>
+<td>当日单位净值（USD）</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList.totalFollowMoney</td>
+<td>当日跟投资金总量（CHN）</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>earningsList</td>
+<td>earningsList列表结束</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-32"><a href="#响应报文示例-32" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":0,
+        "retMsg":"成功"
+    },
+    "body":{
+        "name":5,
+        "caption":5,
+        "profitRate":5,
+        "provider":5,
+        "feeRate":5,
+        "followMoney":5,
+        "providerFollowMoney":5,
+        "profitRate":5,
+        "accountEquity":5,
+        "maxDrawdown":5,
+        "profitRate7d":5,
+        "profitRate30d":5,
+        "publicDays":5,
+        "followNumberActive":5,
+        "followNumberTotal":5,
+        "follow":1
+        "earningsList":[
+            {
+                "createTime":123,
+                "unitEquity":1234,
+                "totalFollowMoney":146501
+            }
+        ]
+    }
+}
+</pre>
+
+
+<hr>
+<h4 id="35-我的跟投-修改止盈止损（3-0-1新增接口）"><a href="#35-我的跟投-修改止盈止损（3-0-1新增接口）" class="headerlink" title="35)    我的跟投-修改止盈止损（3.0.1新增接口）"></a>35)    我的跟投-修改止盈止损（3.0.1新增接口）</h4><h5 id="方法名称-34"><a href="#方法名称-34" class="headerlink" title="方法名称"></a>方法名称</h5><p>resetTpSl</p>
+<h5 id="方法描述-34"><a href="#方法描述-34" class="headerlink" title="方法描述"></a>方法描述</h5><p> 修改跟投记录的止盈止损</p>
+<h5 id="访问路径-34"><a href="#访问路径-34" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/resetTpSl/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/resetTpSl/{seqId}</a></p>
+<h5 id="输入参数-34"><a href="#输入参数-34" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>strategyFollowId</td>
+<td>跟投主键ID</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>tp</td>
+<td>止盈</td>
+<td>String</td>
+<td></td>
+</tr>
+<tr>
+<td>sl</td>
+<td>止损</td>
+<td>String</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-34"><a href="#输出参数-34" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retCode</td>
+<td>返回码</td>
+<td>Integer</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>retMsg</td>
+<td>返回消息</td>
+<td>varchar(256)</td>
+<td>返回描述</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-33"><a href="#响应报文示例-33" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+请求：
+POST请求即可。
+响应：
+{ 
+    "header": { 
+        "retCode": 11000, 
+        "retMsg": "个人信息查询成功"
+    }, 
+    "body": { 
+    }
+}
+
+
+
+</pre>
+
+<hr>
+<h4 id="36-个人信息-获取用户盈亏（3-0-1新增接口）"><a href="#36-个人信息-获取用户盈亏（3-0-1新增接口）" class="headerlink" title="36)    个人信息-获取用户盈亏（3.0.1新增接口）"></a>36)    个人信息-获取用户盈亏（3.0.1新增接口）</h4><h5 id="方法名称-35"><a href="#方法名称-35" class="headerlink" title="方法名称"></a>方法名称</h5><p>userProfitAndLoss</p>
+<h5 id="方法描述-35"><a href="#方法描述-35" class="headerlink" title="方法描述"></a>方法描述</h5><p> 获取策略总览标签页信息。</p>
+<h5 id="访问路径-35"><a href="#访问路径-35" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/user/userProfitAndLoss/{seqId}" target="_blank" rel="external">http://ServiceAddress/user/userProfitAndLoss/{seqId}</a></p>
+<h5 id="输入参数-35"><a href="#输入参数-35" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>userId</td>
+<td>用户ID</td>
+<td>Integer</td>
+<td>非必录项</td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-35"><a href="#输出参数-35" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>retCode</td>
+<td>返回码</td>
+<td>Integer</td>
+<td>返回码</td>
+</tr>
+<tr>
+<td>retMsg</td>
+<td>返回消息</td>
+<td>varchar(256)</td>
+<td>返回描述</td>
+</tr>
+<tr>
+<td>currProfitAndLoss</td>
+<td>当前盈亏</td>
+<td>Long</td>
+<td></td>
+</tr>
+<tr>
+<td>currNetProfitAndLoss</td>
+<td>当前净盈亏</td>
+<td>Long</td>
+<td></td>
+</tr>
+<tr>
+<td>totalAmount</td>
+<td>账户资产总额</td>
+<td>Long</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-34"><a href="#响应报文示例-34" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+请求：
+POST请求即可。
+响应：
+{ 
+    "header": { 
+        "retCode": 11000, 
+        "retMsg": "个人信息查询成功"
+    }, 
+    "body": { 
+        "currProfitAndLoss": -54845, 
+        "currNetProfitAndLoss": -54845, 
+        "totalAmount": 98143040
+    }
+}
+
+
+</pre>
+
+
+
+<hr>
+<h4 id="37-查询我的跟投策略的交易记录（3-0-1新增接口）"><a href="#37-查询我的跟投策略的交易记录（3-0-1新增接口）" class="headerlink" title="37)查询我的跟投策略的交易记录（3.0.1新增接口）"></a>37)查询我的跟投策略的交易记录（3.0.1新增接口）</h4><h5 id="方法名称-36"><a href="#方法名称-36" class="headerlink" title="方法名称"></a>方法名称</h5><p>getMyFollowStrategyTradeList</p>
+<h5 id="方法描述-36"><a href="#方法描述-36" class="headerlink" title="方法描述"></a>方法描述</h5><p>查询我的跟投策略的交易记录</p>
+<h5 id="访问路径-36"><a href="#访问路径-36" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/getMyFollowStrategyTradeList/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/getMyFollowStrategyTradeList/{seqId}</a></p>
+<h5 id="输入参数-36"><a href="#输入参数-36" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>类型</td>
+<td>Integer</td>
+<td>1：当前2：历史</td>
+</tr>
+<tr>
+<td>strategyFollowId</td>
+<td>策略跟投ID</td>
+<td>Integer</td>
+<td>策略的ID</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>页号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页条数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-36"><a href="#输出参数-36" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalMyStrategy</td>
+<td>总记录数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList</td>
+<td>tradeList交易记录开始</td>
+</tr>
+<tr>
+<td>tradeList.sl</td>
+<td>止损</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.profit</td>
+<td>盈亏金额</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.lots</td>
+<td>交易手数</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.symbol</td>
+<td>交易品种</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.orderType</td>
+<td>订单类型</td>
+<td>varchar</td>
+<td>订单类型：0-buy；1-sell；</td>
+</tr>
+<tr>
+<td>tradeList.tp</td>
+<td>止盈</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.agentCommission</td>
+<td>代理商提成</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime_t</td>
+<td>开仓时间（时分秒）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime</td>
+<td>开场时间</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>openPrice</td>
+<td>开仓价格</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime_d</td>
+<td>平仓时间（年月日）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closePrice</td>
+<td>平仓价格</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime</td>
+<td>平仓时间</td>
+<td>Date</td>
+<td></td>
+</tr>
+<tr>
+<td>swap</td>
+<td>利息</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime_d</td>
+<td>开仓时间（年月日）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.comment</td>
+<td>注释</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.commission</td>
+<td>提成</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.orderId</td>
+<td>订单ID</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime_t</td>
+<td>平仓时间（时分秒）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList</td>
+<td>tradeList列表结束</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-35"><a href="#响应报文示例-35" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":52000,
+        "retMsg":"查询我的跟投策略的交易记录成功"
+    },
+    "body":{
+        "totalMyStrategy":1,
+        "tradeList":[
+            {
+                "sl":"0.00000",
+                "profit":"154.55",
+                "lots":"0.035062",
+                "symbol":"EURAUD",
+                "orderType":"1",
+                "tp":"0.00000",
+                "agentCommission":"0.00",
+                "openTime_t":"13:22:46",
+                "openTime":1460352166000,
+                "openPrice":"1.51242",
+                "closeTime_d":"2016-04-19",
+                "closePrice":"1.45569",
+                "closeTime":1461019361000,
+                "swap":"1.42",
+                "openTime_d":"2016-04-11",
+                "comment":"Vol:0.035062;M.Order:3426288",
+                "commission":"0.00",
+                "orderId":"3426300",
+                "closeTime_t":"06:42:41"
+            },
+            {
+                "sl":"0.00000",
+                "profit":"154.55",
+                "lots":"0.035062",
+                "symbol":"EURAUD",
+                "orderType":"1",
+                "tp":"0.00000",
+                "agentCommission":"0.00",
+                "openTime_t":"13:22:46",
+                "openTime":1460352166000,
+                "openPrice":"1.51242",
+                "closeTime_d":"2016-04-19",
+                "closePrice":"1.45569",
+                "closeTime":1461019361000,
+                "swap":"1.42",
+                "openTime_d":"2016-04-11",
+                "comment":"Vol:0.035062;M.Order:3426288",
+                "commission":"0.00",
+                "orderId":"3426300",
+                "closeTime_t":"06:42:41"
+            }
+        ]
+    }
+}
+</pre>
+
+
+
+<hr>
+<h4 id="38-跟投（3-0-1新增接口）"><a href="#38-跟投（3-0-1新增接口）" class="headerlink" title="38)跟投（3.0.1新增接口）"></a>38)跟投（3.0.1新增接口）</h4><h5 id="方法名称-37"><a href="#方法名称-37" class="headerlink" title="方法名称"></a>方法名称</h5><p>confirmFollow</p>
+<h5 id="方法描述-37"><a href="#方法描述-37" class="headerlink" title="方法描述"></a>方法描述</h5><p>跟投</p>
+<h5 id="访问路径-37"><a href="#访问路径-37" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/confirmFollow/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/confirmFollow/{seqId}</a></p>
+<h5 id="输入参数-37"><a href="#输入参数-37" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td>策略的ID</td>
+</tr>
+<tr>
+<td>tp</td>
+<td>止盈比例</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>sl</td>
+<td>止损比例</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>joinAmount</td>
+<td>跟投金额</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradePwd</td>
+<td>支付密码</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-36"><a href="#响应报文示例-36" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":50000,
+        "retMsg":"成功"
+    },
+    "body":{
+
+    }
+}
+</pre>
+
+
+
+
+<hr>
+<h4 id="39-查询我的跟投列表（3-0-1新增接口）"><a href="#39-查询我的跟投列表（3-0-1新增接口）" class="headerlink" title="39) 查询我的跟投列表（3.0.1新增接口）"></a>39) 查询我的跟投列表（3.0.1新增接口）</h4><h5 id="方法名称-38"><a href="#方法名称-38" class="headerlink" title="方法名称"></a>方法名称</h5><p>getMyFollowStrategyList</p>
+<h5 id="方法描述-38"><a href="#方法描述-38" class="headerlink" title="方法描述"></a>方法描述</h5><p>查询我的跟投列表</p>
+<h5 id="访问路径-38"><a href="#访问路径-38" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/getMyFollowStrategyList/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/getMyFollowStrategyList/{seqId}</a></p>
+<h5 id="输入参数-38"><a href="#输入参数-38" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>类型</td>
+<td>Integer</td>
+<td>1：当前2：历史</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>页号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页条数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-37"><a href="#输出参数-37" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalMyStrategy</td>
+<td>总记录数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>当前记录</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList</td>
+<td>strategyList记录开始</td>
+</tr>
+<tr>
+<td>strategyList.id</td>
+<td>跟投ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.accountSlave</td>
+<td>MT4账户</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.status</td>
+<td>状态</td>
+<td>Integer</td>
+<td>/<strong> 跟投状态状态：1-已跟投未入金；2-已跟投；3-已撤投； 4-撤投处理中 ；5-跟投失败 </strong>/</td>
+</tr>
+<tr>
+<td>strategyList.investment</td>
+<td>累计投资金额</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.accountTp</td>
+<td>止盈比例</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.firstFollowTime</td>
+<td>首次投入时间</td>
+<td>Date</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.accountSl</td>
+<td>止损比例</td>
+<td>Double</td>
+<td>比例</td>
+</tr>
+<tr>
+<td>strategyList.lastFollowTime</td>
+<td>最后投入时间</td>
+<td>Date</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyName</td>
+<td>策略名称</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>liveEquity</td>
+<td>净值</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earningsRate</td>
+<td>收益率</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.totalFollowDays</td>
+<td>跟投天数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>历史</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.id</td>
+<td>跟投ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.lastFollowTime</td>
+<td>最后投入时间</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.investment</td>
+<td>累计投资金额</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.lastEquity</td>
+<td>最后净值</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.exitTime</td>
+<td>撤投时间</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.exitReason</td>
+<td>撤投原因</td>
+<td>Integer</td>
+<td>撤投原因：0-未撤投；1-策略关闭；2-达到止盈撤投；3-达到止损撤投；4-主动撤投；</td>
+</tr>
+<tr>
+<td>strategyList.strategyName</td>
+<td>策略名称</td>
+<td>Varchar(60)</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earnings</td>
+<td>收益</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earningsRate</td>
+<td>收益率</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList</td>
+<td>tradeList列表结束</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-37"><a href="#响应报文示例-37" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":51000,
+        "retMsg":"查询我的跟投列表成功"
+    },
+    "body":{
+        "totalMyStrategy":2,
+        "strategyList":[
+            {
+                "id":452,
+                "accountSlave":"6663117",
+                "status":2,
+                "investment":1000.00,
+                "accountTp":100.00,
+                "firstFollowTime":"2016-06-01 12:47:36",
+                "accountSl":10.00,
+                "lastFollowTime":"2016-06-01 12:47:36",
+                "strategyName":"北冥神功-BetaGo（测试）",
+                "strategyId":18,
+                "liveEquity":996.09,
+                "earningsRate":-0.40,
+                "totalFollowDays":1
+            },
+            {
+                "id":451,
+                "accountSlave":"6663116",
+                "status":2,
+                "investment":1000.00,
+                "accountTp":100.00,
+                "firstFollowTime":"2016-06-01 12:47:06",
+                "accountSl":10.00,
+                "lastFollowTime":"2016-06-01 12:47:06",
+                "strategyName":"独孤九剑-AlphaGo（测试）",
+                "strategyId":17,
+                "liveEquity":996.09,
+                "earningsRate":-0.40,
+                "totalFollowDays":1
+            }
+        ]
+    }
+}
+
+</pre>
+
+<hr>
+<p>[TOC]</p>
+<h4 id="40-查询所有开放的策略（3-0-1新增接口）"><a href="#40-查询所有开放的策略（3-0-1新增接口）" class="headerlink" title="40) 查询所有开放的策略（3.0.1新增接口）"></a>40) 查询所有开放的策略（3.0.1新增接口）</h4><h5 id="方法名称-39"><a href="#方法名称-39" class="headerlink" title="方法名称"></a>方法名称</h5><p>getStrategyList</p>
+<h5 id="方法描述-39"><a href="#方法描述-39" class="headerlink" title="方法描述"></a>方法描述</h5><p>查询所有开放的策略</p>
+<h5 id="访问路径-39"><a href="#访问路径-39" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/getStrategyList/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/getStrategyList/{seqId}</a></p>
+<h5 id="输入参数-39"><a href="#输入参数-39" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>userId</td>
+<td>用户Id</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>页号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页条数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-38"><a href="#输出参数-38" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalMyStrategy</td>
+<td>总记录数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList</td>
+<td>strategyList策略记录开始</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.strategyName</td>
+<td>策略名称</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.followNumberActive</td>
+<td>当前跟投人数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.followNumberTotal</td>
+<td>累计跟投人数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.profitRate</td>
+<td>收益率</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.maxDrawDown</td>
+<td>最大回撤</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.publicDays</td>
+<td>公开周期（天）</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.followMoney</td>
+<td>跟投总额</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.providerFollowMoney</td>
+<td>管理人资金</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.nickname</td>
+<td>策略管理人昵称</td>
+<td>Varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.provider_deduct_rate</td>
+<td>策略提供者提成比例</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.platform_deduct_rate</td>
+<td>平台提成比例</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.maxFollowCount</td>
+<td>允许跟投的最大人数</td>
+<td>Double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.follow</td>
+<td>是否可以跟投</td>
+<td>Integer</td>
+<td>1：可以 0：不可以</td>
+</tr>
+<tr>
+<td>strategyList.earningsList</td>
+<td>净值List</td>
+<td>List</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earningsList.unitEquity</td>
+<td>当日单位净值（USD）</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earningsList.createTime</td>
+<td>更新净值日期</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>strategyList.earningsList.totalFollowMoney</td>
+<td>当日跟投资金总量（CHN）</td>
+<td>double</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-38"><a href="#响应报文示例-38" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":53000,
+        "retMsg":"查询所有开放策略成功"
+    },
+    "body":{
+        "totalMyStrategy":18,
+        "strategyList":[
+            {
+                "strategyId":31,
+                "strategyName":"瞧一瞧看一看",
+                "followNumberActive":2,
+                "followNumberTotal":5,
+                "profitRate":-51.40,
+                "maxDrawDown":52.12,
+                "publicDays":10,
+                "followMoney":2000.00,
+                "providerFollowMoney":0.00,
+                "nickname":"DX154cbb1131a",
+                "provider_deduct_rate":"9",
+                "platform_deduct_rate":"1",
+                "maxFollowCount":"500",
+                 "follow":"1",
+                "earningsList":[
+                    {
+                        "unitEquity":1.0,
+                        "createTime":"2016-05-23 16:00:00",
+                        "totalFollowMoney":2000.0
+                    },
+                    {
+                        "unitEquity":0.4981,
+                        "createTime":"2016-05-24 16:00:00",
+                        "totalFollowMoney":2000.0
+                    },
+                    {
+                        "unitEquity":0.488,
+                        "createTime":"2016-05-25 16:00:00",
+                        "totalFollowMoney":2000.0
+                    }
+                ]
+            }
+        ]
+    }
+}
+
+</pre>
+
+
+<hr>
+<h4 id="41-查询策略的交易记录（3-0-1新增接口）"><a href="#41-查询策略的交易记录（3-0-1新增接口）" class="headerlink" title="41) 查询策略的交易记录（3.0.1新增接口）"></a>41) 查询策略的交易记录（3.0.1新增接口）</h4><h5 id="方法名称-40"><a href="#方法名称-40" class="headerlink" title="方法名称"></a>方法名称</h5><p>getStrategyTradeList</p>
+<h5 id="方法描述-40"><a href="#方法描述-40" class="headerlink" title="方法描述"></a>方法描述</h5><p>查询我的跟投策略的交易记录</p>
+<h5 id="访问路径-40"><a href="#访问路径-40" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/getStrategyTradeList/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/getStrategyTradeList/{seqId}</a></p>
+<h5 id="输入参数-40"><a href="#输入参数-40" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(16)</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>类型</td>
+<td>Integer</td>
+<td>1：当前2：历史</td>
+</tr>
+<tr>
+<td>strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td>策略的ID</td>
+</tr>
+<tr>
+<td>pageIndex</td>
+<td>页号</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>每页条数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-39"><a href="#输出参数-39" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>totalMyStrategy</td>
+<td>总记录数</td>
+<td>Integer</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList</td>
+<td>tradeList交易记录开始</td>
+</tr>
+<tr>
+<td>tradeList.sl</td>
+<td>止损</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.profit</td>
+<td>盈亏金额</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.lots</td>
+<td>交易手数</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.symbol</td>
+<td>交易品种</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.orderType</td>
+<td>订单类型</td>
+<td>varchar</td>
+<td>订单类型：0-buy；1-sell；</td>
+</tr>
+<tr>
+<td>tradeList.tp</td>
+<td>止盈</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.agentCommission</td>
+<td>代理商提成</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime_t</td>
+<td>开仓时间（时分秒）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime</td>
+<td>开场时间</td>
+<td>date</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openPrice</td>
+<td>开仓价格</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime_d</td>
+<td>平仓时间（年月日）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closePrice</td>
+<td>平仓价格</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime</td>
+<td>平仓时间</td>
+<td>Date</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.swap</td>
+<td>利息</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.openTime_d</td>
+<td>开仓时间（年月日）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.comment</td>
+<td>注释</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.commission</td>
+<td>提成</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.orderId</td>
+<td>订单ID</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.closeTime_t</td>
+<td>平仓时间（时分秒）</td>
+<td>varchar</td>
+<td></td>
+</tr>
+<tr>
+<td>tradeList.isMasterOrder</td>
+<td>是否master订单</td>
+<td>Integer</td>
+<td>1：是；0：否</td>
+</tr>
+<tr>
+<td>tradeList</td>
+<td>tradeList列表结束</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-39"><a href="#响应报文示例-39" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":52000,
+        "retMsg":"查询策略的交易记录成功"
+    },
+    "body":{
+        "totalMyStrategy":1,
+        "tradeList":[
+            {
+                "sl":"0.00000",
+                "profit":"154.55",
+                "lots":"0.035062",
+                "symbol":"EURAUD",
+                "orderType":"1",
+                "tp":"0.00000",
+                "agentCommission":"0.00",
+                "openTime_t":"13:22:46",
+                "openTime":1460352166000,
+                "openPrice":"1.51242",
+                "closeTime_d":"2016-04-19",
+                "closePrice":"1.45569",
+                "closeTime":1461019361000,
+                "swap":"1.42",
+                "openTime_d":"2016-04-11",
+                "comment":"Vol:0.035062;M.Order:3426288",
+                "commission":"0.00",
+                "orderId":"3426300",
+                "closeTime_t":"06:42:41",
+                "isMasterOrder":"1"
+            },
+            {
+                "sl":"0.00000",
+                "profit":"154.55",
+                "lots":"0.035062",
+                "symbol":"EURAUD",
+                "orderType":"1",
+                "tp":"0.00000",
+                "agentCommission":"0.00",
+                "openTime_t":"13:22:46",
+                "openTime":1460352166000,
+                "openPrice":"1.51242",
+                "closeTime_d":"2016-04-19",
+                "closePrice":"1.45569",
+                "closeTime":1461019361000,
+                "swap":"1.42",
+                "openTime_d":"2016-04-11",
+                "comment":"Vol:0.035062;M.Order:3426288",
+                "commission":"0.00",
+                "orderId":"3426300",
+                "closeTime_t":"06:42:41",
+                "isMasterOrder":"0"
+            }
+        ]
+    }
+}
+
+</pre>
+
+
+<h4 id="42-撤投（3-0-1新增接口）"><a href="#42-撤投（3-0-1新增接口）" class="headerlink" title="42) 撤投（3.0.1新增接口）"></a>42) 撤投（3.0.1新增接口）</h4><h5 id="方法名称-41"><a href="#方法名称-41" class="headerlink" title="方法名称"></a>方法名称</h5><p>revokeFollow</p>
+<h5 id="方法描述-41"><a href="#方法描述-41" class="headerlink" title="方法描述"></a>方法描述</h5><p>手机端用户主动撤投跟投策略调用</p>
+<h5 id="访问路径-41"><a href="#访问路径-41" class="headerlink" title="访问路径"></a>访问路径</h5><p><a href="http://ServiceAddress/strategy/revokeFollow/{seqId}" target="_blank" rel="external">http://ServiceAddress/strategy/revokeFollow/{seqId}</a></p>
+<h5 id="输入参数-41"><a href="#输入参数-41" class="headerlink" title="输入参数"></a>输入参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>token</td>
+<td>令牌号</td>
+<td>varchar(64)</td>
+<td></td>
+</tr>
+<tr>
+<td>verNo</td>
+<td>版本号</td>
+<td>varchar(16)</td>
+<td>如果不存在，默认使用最低版本接口</td>
+</tr>
+<tr>
+<td>strategyId</td>
+<td>策略ID</td>
+<td>Integer</td>
+<td>策略的ID</td>
+</tr>
+</tbody>
+</table>
+<h5 id="输出参数-40"><a href="#输出参数-40" class="headerlink" title="输出参数"></a>输出参数</h5><table>
+<thead>
+<tr>
+<th>参数代码</th>
+<th>参数名称</th>
+<th>数据类型</th>
+<th>参数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>principal</td>
+<td>本金</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+<tr>
+<td>profitOrLoss</td>
+<td>盈亏金额</td>
+<td>Long</td>
+<td>以分为单位</td>
+</tr>
+</tbody>
+</table>
+<h5 id="响应报文示例-40"><a href="#响应报文示例-40" class="headerlink" title="响应报文示例"></a>响应报文示例</h5><pre>
+{
+    "header":{
+        "retCode":55000,
+        "retMsg":"撤投成功"
+    },
+    "body":{
+        "principal":1000,
+        "profitOrLoss":20
+    }
+}
+
+</pre>
+
+<h2 id="4-标准代码"><a href="#4-标准代码" class="headerlink" title="4.    标准代码"></a>4.    标准代码</h2><h3 id="4-1-错误码表"><a href="#4-1-错误码表" class="headerlink" title="4.1    错误码表"></a>4.1    错误码表</h3><table>
+<thead>
+<tr>
+<th>错误码</th>
+<th>错误消息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>成功</td>
+</tr>
+<tr>
+<td>1</td>
+<td>服务器内部错误</td>
+</tr>
+<tr>
+<td>2</td>
+<td>未授权</td>
+</tr>
+<tr>
+<td>3</td>
+<td>系统维护</td>
+</tr>
+<tr>
+<td>登录接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>10000</td>
+<td>登录成功</td>
+</tr>
+<tr>
+<td>10001</td>
+<td>已登录</td>
+</tr>
+<tr>
+<td>10002</td>
+<td>用户名密码错误</td>
+</tr>
+<tr>
+<td>10003</td>
+<td>用户已冻结</td>
+</tr>
+<tr>
+<td>10004</td>
+<td>登录次数大于5次</td>
+</tr>
+<tr>
+<td>个人信息接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>11000</td>
+<td>个人信息查询成功</td>
+</tr>
+<tr>
+<td>11001</td>
+<td>个人信息查询失败</td>
+</tr>
+<tr>
+<td>11002</td>
+<td>无个人信息数据</td>
+</tr>
+<tr>
+<td>个人资产接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>12000</td>
+<td>个人资产查询成功</td>
+</tr>
+<tr>
+<td>12001</td>
+<td>个人资产查询失败</td>
+</tr>
+<tr>
+<td>12002</td>
+<td>无个人资产数据</td>
+</tr>
+<tr>
+<td>获取推荐产品接口返回码</td>
+</tr>
+<tr>
+<td>13000</td>
+<td>查询推荐产品成功</td>
+</tr>
+<tr>
+<td>13001</td>
+<td>查询推荐产品失败</td>
+</tr>
+<tr>
+<td>13002</td>
+<td>无推荐产品数据</td>
+</tr>
+<tr>
+<td>13003</td>
+<td>无推荐策略数据</td>
+</tr>
+<tr>
+<td>13004</td>
+<td>无任何推荐信息</td>
+</tr>
+<tr>
+<td>募集中产品列表接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>14000</td>
+<td>查询募集中产品列表成功</td>
+</tr>
+<tr>
+<td>14001</td>
+<td>查询募集中产品列表失败</td>
+</tr>
+<tr>
+<td>14002</td>
+<td>无募集中产品列表数据</td>
+</tr>
+<tr>
+<td>产品详情接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>15000</td>
+<td>查询产品详情成功</td>
+</tr>
+<tr>
+<td>15001</td>
+<td>查询产品详情失败</td>
+</tr>
+<tr>
+<td>15002</td>
+<td>无产品详情数据</td>
+</tr>
+<tr>
+<td>发起人档案接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>16000</td>
+<td>查询发起人档案成功</td>
+</tr>
+<tr>
+<td>16001</td>
+<td>查询发起人档案失败</td>
+</tr>
+<tr>
+<td>16002</td>
+<td>无发起人档案数据</td>
+</tr>
+<tr>
+<td>资金管理人档案接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>17000</td>
+<td>查询资金管理人档案成功</td>
+</tr>
+<tr>
+<td>17001</td>
+<td>查询资金管理人档案失败</td>
+</tr>
+<tr>
+<td>17002</td>
+<td>无资金管理人档案数据</td>
+</tr>
+<tr>
+<td>我的入伙记录接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>18000</td>
+<td>查询入伙记录成功</td>
+</tr>
+<tr>
+<td>18001</td>
+<td>查询入伙记录失败</td>
+</tr>
+<tr>
+<td>18002</td>
+<td>无入伙记录数据</td>
+</tr>
+<tr>
+<td>入伙产品接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>19000</td>
+<td>入伙产品成功</td>
+</tr>
+<tr>
+<td>19001</td>
+<td>入伙产品失败，交易密码错误</td>
+</tr>
+<tr>
+<td>19002</td>
+<td>入伙产品失败，指定要入伙的产品不存在</td>
+</tr>
+<tr>
+<td>19003</td>
+<td>入伙产品失败，入伙金额必须大于0</td>
+</tr>
+<tr>
+<td>19004</td>
+<td>入伙产品失败，入伙金额必须小于等于产品可入伙金额</td>
+</tr>
+<tr>
+<td>19005</td>
+<td>入伙产品失败，该产品风险值不允许使用红包</td>
+</tr>
+<tr>
+<td>19006</td>
+<td>入伙产品失败，该产品操作时长不允许使用红包</td>
+</tr>
+<tr>
+<td>19007</td>
+<td>入伙产品失败，入伙金额必须大于产品最小入伙金额</td>
+</tr>
+<tr>
+<td>19008</td>
+<td>入伙产品失败，当前用户不允许入伙该产品</td>
+</tr>
+<tr>
+<td>19009</td>
+<td>入伙产品失败，账户可用余额不足</td>
+</tr>
+<tr>
+<td>19999</td>
+<td>入伙产品失败，其他原因</td>
+</tr>
+<tr>
+<td>修改支付密码</td>
+<td></td>
+</tr>
+<tr>
+<td>20000</td>
+<td>修改成功</td>
+</tr>
+<tr>
+<td>20001</td>
+<td>修改失败，其他原因</td>
+</tr>
+<tr>
+<td>20002</td>
+<td>原始密码错误</td>
+</tr>
+<tr>
+<td>20003</td>
+<td>修改交易密码没有找到对应用户</td>
+</tr>
+<tr>
+<td>20004</td>
+<td>新交易密码与原始交易密码相同</td>
+</tr>
+<tr>
+<td>20005</td>
+<td>短信验证码校验失败</td>
+</tr>
+<tr>
+<td>修改登陆密码</td>
+<td></td>
+</tr>
+<tr>
+<td>21000</td>
+<td>修改成功</td>
+</tr>
+<tr>
+<td>21001</td>
+<td>修改失败，其他原因</td>
+</tr>
+<tr>
+<td>21002</td>
+<td>原始密码错误</td>
+</tr>
+<tr>
+<td>21003</td>
+<td>新密码与原始密码相同</td>
+</tr>
+<tr>
+<td>21004</td>
+<td>短信验证码错误</td>
+</tr>
+<tr>
+<td>短信校验</td>
+<td></td>
+</tr>
+<tr>
+<td>22000</td>
+<td>校验成功</td>
+</tr>
+<tr>
+<td>22001</td>
+<td>校验失败</td>
+</tr>
+<tr>
+<td>22002</td>
+<td>发送成功</td>
+</tr>
+<tr>
+<td>用户意见反馈</td>
+<td></td>
+</tr>
+<tr>
+<td>23000</td>
+<td>反馈成功</td>
+</tr>
+<tr>
+<td>23001</td>
+<td>反馈失败</td>
+</tr>
+<tr>
+<td>23002</td>
+<td>用户不存在</td>
+</tr>
+<tr>
+<td>获取版本信息</td>
+<td></td>
+</tr>
+<tr>
+<td>24000</td>
+<td>获取成功</td>
+</tr>
+<tr>
+<td>24001</td>
+<td>客户端为最新版本</td>
+</tr>
+<tr>
+<td>24002</td>
+<td>客户端版本号不存在，需要立即升级</td>
+</tr>
+<tr>
+<td>24003</td>
+<td>服务器没有版本信息</td>
+</tr>
+<tr>
+<td>产品入伙记录接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>25000</td>
+<td>查询入伙记录成功</td>
+</tr>
+<tr>
+<td>25001</td>
+<td>查询入伙记录失败</td>
+</tr>
+<tr>
+<td>25002</td>
+<td>无入伙记录数据</td>
+</tr>
+<tr>
+<td>注销接口返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>26000</td>
+<td>注销成功</td>
+</tr>
+<tr>
+<td>26001</td>
+<td>注销失败，用户未登录</td>
+</tr>
+<tr>
+<td>26002</td>
+<td>注销失败，其他原因</td>
+</tr>
+<tr>
+<td>注册接口</td>
+<td></td>
+</tr>
+<tr>
+<td>27000</td>
+<td>注册成功</td>
+</tr>
+<tr>
+<td>27001</td>
+<td>密码格式错误</td>
+</tr>
+<tr>
+<td>27002</td>
+<td>密码不一致</td>
+</tr>
+<tr>
+<td>27003</td>
+<td>手机已经使用</td>
+</tr>
+<tr>
+<td>27004</td>
+<td>昵称已经使用</td>
+</tr>
+<tr>
+<td>27005</td>
+<td>昵称格式错误</td>
+</tr>
+<tr>
+<td>27006</td>
+<td>注册失败</td>
+</tr>
+<tr>
+<td>27007</td>
+<td>短信验证码错误</td>
+</tr>
+<tr>
+<td>27008</td>
+<td>推荐人不存在</td>
+</tr>
+<tr>
+<td>校验接口</td>
+<td></td>
+</tr>
+<tr>
+<td>28000</td>
+<td>验证成功</td>
+</tr>
+<tr>
+<td>28001</td>
+<td>手机号码已经存在</td>
+</tr>
+<tr>
+<td>28002</td>
+<td>邮箱已经存在</td>
+</tr>
+<tr>
+<td>28003</td>
+<td>昵称已经存在</td>
+</tr>
+<tr>
+<td>28004</td>
+<td>邮箱格式错误</td>
+</tr>
+<tr>
+<td>28005</td>
+<td>昵称格式错误</td>
+</tr>
+<tr>
+<td>28006</td>
+<td>验证失败</td>
+</tr>
+<tr>
+<td>获取活动内容列表</td>
+<td></td>
+</tr>
+<tr>
+<td>29000</td>
+<td>获取成功</td>
+</tr>
+<tr>
+<td>29001</td>
+<td>获取失败</td>
+</tr>
+<tr>
+<td>获取银行卡信息</td>
+<td></td>
+</tr>
+<tr>
+<td>30000</td>
+<td>获取成功</td>
+</tr>
+<tr>
+<td>30001</td>
+<td>银行卡信息不存在</td>
+</tr>
+<tr>
+<td>取款信息</td>
+<td></td>
+</tr>
+<tr>
+<td>31000</td>
+<td>取款成功</td>
+</tr>
+<tr>
+<td>31001</td>
+<td>身份未认证</td>
+</tr>
+<tr>
+<td>31002</td>
+<td>手机为空或没激活</td>
+</tr>
+<tr>
+<td>31003</td>
+<td>取款金额必须为大于1的整数或小数，小数点后不超过2位</td>
+</tr>
+<tr>
+<td>31004</td>
+<td>支付密码错误</td>
+</tr>
+<tr>
+<td>31005</td>
+<td>手机验证码错误</td>
+</tr>
+<tr>
+<td>31006</td>
+<td>没有当前用户</td>
+</tr>
+<tr>
+<td>31007</td>
+<td>金额不能大于50000</td>
+</tr>
+<tr>
+<td>31008</td>
+<td>非法请求</td>
+</tr>
+<tr>
+<td>线上支付申请</td>
+<td></td>
+</tr>
+<tr>
+<td>32000</td>
+<td>返回流水成功</td>
+</tr>
+<tr>
+<td>32001</td>
+<td>返回流水失败</td>
+</tr>
+<tr>
+<td>32002</td>
+<td>异常请求</td>
+</tr>
+<tr>
+<td>线上支付确认</td>
+<td></td>
+</tr>
+<tr>
+<td>33000</td>
+<td>支付成功</td>
+</tr>
+<tr>
+<td>33001</td>
+<td>支付失败</td>
+</tr>
+<tr>
+<td>33002</td>
+<td>支付异常</td>
+</tr>
+<tr>
+<td>绑定银行卡</td>
+<td></td>
+</tr>
+<tr>
+<td>34000</td>
+<td>绑定成功</td>
+</tr>
+<tr>
+<td>34001</td>
+<td>未进行实名认证</td>
+</tr>
+<tr>
+<td>34002</td>
+<td>银行类型错误</td>
+</tr>
+<tr>
+<td>34003</td>
+<td>银行卡开户支行选择错误</td>
+</tr>
+<tr>
+<td>34004</td>
+<td>省份选择错误</td>
+</tr>
+<tr>
+<td>34005</td>
+<td>开户地市选择错误</td>
+</tr>
+<tr>
+<td>34006</td>
+<td>银行卡号填写错误</td>
+</tr>
+<tr>
+<td>34007</td>
+<td>此账户已经存在，请勿重复绑定</td>
+</tr>
+<tr>
+<td>取消绑定银行卡</td>
+<td></td>
+</tr>
+<tr>
+<td>35000</td>
+<td>取消绑定成功</td>
+</tr>
+<tr>
+<td>35001</td>
+<td>取消绑定失败，银行卡列表为空</td>
+</tr>
+<tr>
+<td>35002</td>
+<td>取消绑定失败</td>
+</tr>
+<tr>
+<td>获取支行信息</td>
+</tr>
+<tr>
+<td>36000</td>
+<td>获取支行信息成功</td>
+</tr>
+<tr>
+<td>36001</td>
+<td>银行类型错误</td>
+</tr>
+<tr>
+<td>36002</td>
+<td>省份选择错误</td>
+</tr>
+<tr>
+<td>36003</td>
+<td>开户地市选择错误</td>
+</tr>
+<tr>
+<td>线下支付申请</td>
+<td></td>
+</tr>
+<tr>
+<td>37000</td>
+<td>申请已受理</td>
+</tr>
+<tr>
+<td>37001</td>
+<td>线下充值金额必须为10—10000000的整数或小数，小数点后不超过2位</td>
+</tr>
+<tr>
+<td>37002</td>
+<td>查无此当前用户</td>
+</tr>
+<tr>
+<td>37003</td>
+<td>申请失败</td>
+</tr>
+<tr>
+<td>获取分享规则列表</td>
+<td></td>
+</tr>
+<tr>
+<td>38000</td>
+<td>获取列表成功</td>
+</tr>
+<tr>
+<td>添加分享记录</td>
+<td></td>
+</tr>
+<tr>
+<td>39000</td>
+<td>添加记录成功</td>
+</tr>
+<tr>
+<td>39001</td>
+<td>添加失败</td>
+</tr>
+<tr>
+<td>客户端启动检测</td>
+<td></td>
+</tr>
+<tr>
+<td>40000</td>
+<td>获取检测信息成功</td>
+</tr>
+<tr>
+<td>40001</td>
+<td>获取检测信息出错</td>
+</tr>
+<tr>
+<td>获取手机公告列表</td>
+<td></td>
+</tr>
+<tr>
+<td>41000</td>
+<td>获取列表成功</td>
+</tr>
+<tr>
+<td>41001</td>
+<td>获取列表为空</td>
+</tr>
+<tr>
+<td>41002</td>
+<td>获取列表出错</td>
+</tr>
+<tr>
+<td>策略详情-策略总览</td>
+<td></td>
+</tr>
+<tr>
+<td>42000</td>
+<td>获取策略信息成功</td>
+</tr>
+<tr>
+<td>42001</td>
+<td>策略不存在</td>
+</tr>
+<tr>
+<td>我的跟投—修改止盈止损</td>
+<td></td>
+</tr>
+<tr>
+<td>43000</td>
+<td>止盈止损设置成功</td>
+</tr>
+<tr>
+<td>43001</td>
+<td>止盈止损设置失败</td>
+</tr>
+<tr>
+<td>43002</td>
+<td>止损参数必须在1到100之间</td>
+</tr>
+<tr>
+<td>43003</td>
+<td>止盈参数必须在1到100之间</td>
+</tr>
+<tr>
+<td>43004</td>
+<td>已撤投，不允许再设置止盈止损！</td>
+</tr>
+<tr>
+<td>43005</td>
+<td>参数非法！</td>
+</tr>
+<tr>
+<td>跟投</td>
+<td></td>
+</tr>
+<tr>
+<td>50000</td>
+<td>跟投成功</td>
+</tr>
+<tr>
+<td>50001</td>
+<td>跟投失败</td>
+</tr>
+<tr>
+<td>50002</td>
+<td>跟投中，不允许再次跟投</td>
+</tr>
+<tr>
+<td>50003</td>
+<td>跟投处理中</td>
+</tr>
+<tr>
+<td>50004</td>
+<td>止损参数错误</td>
+</tr>
+<tr>
+<td>50005</td>
+<td>止损参数必须在1到100之间</td>
+</tr>
+<tr>
+<td>50006</td>
+<td>止盈参数错误</td>
+</tr>
+<tr>
+<td>50007</td>
+<td>止盈参数必须在1到1000之间</td>
+</tr>
+<tr>
+<td>50008</td>
+<td>跟投金额参数错误</td>
+</tr>
+<tr>
+<td>50009</td>
+<td>跟投金额必须在1000到100000000之间</td>
+</tr>
+<tr>
+<td>50010</td>
+<td>支付密码错误</td>
+</tr>
+<tr>
+<td>50011</td>
+<td>跟投中，不能再次跟投</td>
+</tr>
+<tr>
+<td>50012</td>
+<td>策略关闭，不能跟投</td>
+</tr>
+<tr>
+<td>50013</td>
+<td>已达到最大跟投人数，不能跟投</td>
+</tr>
+<tr>
+<td>50014</td>
+<td>余额不足</td>
+</tr>
+<tr>
+<td>查询我的跟投列表</td>
+<td></td>
+</tr>
+<tr>
+<td>51000</td>
+<td>查询我的跟投列表成功</td>
+</tr>
+<tr>
+<td>51001</td>
+<td>查询我的跟投列表失败</td>
+</tr>
+<tr>
+<td>查询我的跟投的交易记录</td>
+<td></td>
+</tr>
+<tr>
+<td>52000</td>
+<td>查询我的跟投策略的交易记录成功</td>
+</tr>
+<tr>
+<td>52001</td>
+<td>查询我的跟投策略的交易记录失败</td>
+</tr>
+<tr>
+<td>查询所有开放的策略</td>
+<td></td>
+</tr>
+<tr>
+<td>53000</td>
+<td>查询所有开放策略成功</td>
+</tr>
+<tr>
+<td>53001</td>
+<td>查询所有开发策略失败</td>
+</tr>
+<tr>
+<td>查询策略的交易记录</td>
+<td></td>
+</tr>
+<tr>
+<td>54000</td>
+<td>查询策略的交易记录成功</td>
+</tr>
+<tr>
+<td>54001</td>
+<td>查询策略的交易记录失败</td>
+</tr>
+<tr>
+<td>撤投返回码</td>
+<td></td>
+</tr>
+<tr>
+<td>54999</td>
+<td>撤投异常</td>
+</tr>
+<tr>
+<td>55000</td>
+<td>撤投成功</td>
+</tr>
+<tr>
+<td>55001</td>
+<td>您申请撤投的策略不存在或已被撤投</td>
+</tr>
+<tr>
+<td>55002</td>
+<td>不在交易时间段内</td>
+</tr>
+<tr>
+<td>55003</td>
+<td>剔除DTCH失败</td>
+</tr>
+<tr>
+<td>55004</td>
+<td>slave账户余额清零失败</td>
+</tr>
+<tr>
+<td>55005</td>
+<td>已经被撤投过了</td>
+</tr>
+<tr>
+<td>55006</td>
+<td>撤投处理中</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-渠道号码表"><a href="#4-2-渠道号码表" class="headerlink" title="4.2    渠道号码表"></a>4.2    渠道号码表</h3><table>
+<thead>
+<tr>
+<th>渠道号</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>00001</td>
+<td>苹果商城，AppStore</td>
+</tr>
+<tr>
+<td>99999</td>
+<td>官网</td>
+</tr>
+<tr>
+<td>99998</td>
+<td>应用宝</td>
+</tr>
+<tr>
+<td>99997</td>
+<td>百度应用</td>
+</tr>
+<tr>
+<td>99996</td>
+<td>安卓市场</td>
+</tr>
+<tr>
+<td>99995</td>
+<td>360手机助手</td>
+</tr>
+<tr>
+<td>99994</td>
+<td>豌豆荚</td>
+</tr>
+<tr>
+<td>99993</td>
+<td>安智市场</td>
+</tr>
+<tr>
+<td>99992</td>
+<td>小米</td>
+</tr>
+<tr>
+<td>99991</td>
+<td>营销渠道1</td>
+</tr>
+<tr>
+<td>99990</td>
+<td>营销渠道2</td>
+</tr>
+<tr>
+<td>99989</td>
+<td>营销渠道3</td>
+</tr>
+<tr>
+<td>99988</td>
+<td>营销渠道4</td>
+</tr>
+<tr>
+<td>99987</td>
+<td>营销渠道5</td>
+</tr>
+<tr>
+<td>99986</td>
+<td>营销渠道6</td>
+</tr>
+<tr>
+<td>99985</td>
+<td>营销渠道7</td>
+</tr>
+<tr>
+<td>99984</td>
+<td>营销渠道8</td>
+</tr>
+<tr>
+<td>99983</td>
+<td>营销渠道9</td>
+</tr>
+<tr>
+<td>99982</td>
+<td>营销渠道10</td>
+</tr>
+<tr>
+<td>99981</td>
+<td>营销渠道11</td>
+</tr>
+<tr>
+<td>99980</td>
+<td>营销渠道12</td>
+</tr>
+<tr>
+<td>99979</td>
+<td>营销渠道13</td>
+</tr>
+<tr>
+<td>99978</td>
+<td>营销渠道14</td>
+</tr>
+<tr>
+<td>99977</td>
+<td>营销渠道15</td>
+</tr>
+<tr>
+<td>99976</td>
+<td>营销渠道16</td>
+</tr>
+<tr>
+<td>99975</td>
+<td>营销渠道17</td>
+</tr>
+<tr>
+<td>99974</td>
+<td>营销渠道18</td>
+</tr>
+<tr>
+<td>99973</td>
+<td>营销渠道19</td>
+</tr>
+<tr>
+<td>99972</td>
+<td>营销渠道20</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/29/api/" data-id="ciq0ah2xv00019srcy9c88xhv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/29/hello-world/" class="article-date">
+  <time datetime="2016-06-29T02:17:17.440Z" itemprop="datePublished">2016-06-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/29/hello-world/">Hello World</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2016/06/29/hello-world/" data-id="ciq0ah2wu00009src6herbuow" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/06/29/api/">api</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/29/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
